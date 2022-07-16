@@ -6,7 +6,8 @@ import "./GeoMap.css"
 function GeoMap() {
     const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
     const [content, setContent] = useState("")
-    
+    const [selectedCountry, setSelectedCountry] = useState("")
+
     return (
         <div className="GeoMap">
             <h1>Map Demo</h1>
@@ -25,6 +26,10 @@ function GeoMap() {
                         onMouseEnter={() => {
                             const NAME  = geo.properties.name;
                             setContent(`${NAME}`);
+                        }}
+                        onClick={() => {
+                            const NAME  = geo.properties.name;
+                            setSelectedCountry(`${NAME}`);
                         }}
                         onMouseLeave={() => {
                             setContent("");
