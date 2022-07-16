@@ -6,7 +6,10 @@ const Quiz = () => {
     const [country , setCountry] = useState({});
     const [question, setQuestion] = useState("");
     const [options, setOptions] = useState([]);
-    const [quiz, setQuiz] = useState({});
+    const [answer, setAnswer] =useState("");
+    const [chosen, setChosen] = useState("");
+    const [score, setScore] = useState(0);
+    const [playButton, setPlayButton] = useState("PLAY")
 
     useEffect(() => {getCountries()},[])
     useEffect(() => {getCountry()},[countries])
@@ -30,8 +33,6 @@ const Quiz = () => {
     function getQuiz() {
         generateQuestion();
         generateOptions();
-        console.log(question);
-        console.log(options);
     }
 
     function generateQuestion() {
@@ -43,16 +44,47 @@ const Quiz = () => {
         const option3 = countries[getRandomIndex(0, countries.length-1)].capital[0];
         const index = getRandomIndex(0, 3);
         console.log(index);
-        let generatedOptions = [ option1, option2, option3]
-        generatedOptions.splice(index, 0, country.capital[0])
-        setOptions(generatedOptions)
+        let generatedOptions = [ option1, option2, option3];
+        generatedOptions.splice(index, 0, country.capital[0]);
+        setOptions(generatedOptions);
+        setAnswer(country.capital[0]);
+    }
+
+    function checkAnswer() {
+        if (answer === chosen) {
+            return true 
+        } else {
+            return false
+        }
+    }
+
+    function submitChosen() {
+        let points = 0;
+        if (checkAnswer()) {
+            points = score + 10;
+            setScore(points);
+            console.log(score);
+        } else {
+            console.log("wrong answer")
+        }
+        clearQuiz();
+    }
+
+    function clearQuiz() {
+        setQuestion("");
+        setOptions([]);
+        setAnswer("");
+        setChosen("");
+        setPlayButton("Try Again")
     }
 
     return (
-        <div>
+        <div className="quiz-box">
+            <p>User Score: {score}</p>
+            <button onClick={getQuiz}>{playButton}</button>
             <h2>{question}</h2>
-            <QuizOptions options={options}/>
-            <button onClick={getQuiz}>get quiz</button>
+            <QuizOptions options={options} submitChosen={submitChosen} setChosen={setChosen}/>
+            
         </div>
     )
 }
