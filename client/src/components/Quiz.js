@@ -36,6 +36,8 @@ const Quiz = () => {
     }
 
     function generateQuestion() {
+        getCountry();
+        setPlayButton("Play");
         setQuestion(`What is the capital city of ${country.name.official}?`)
     }
     function generateOptions() {
@@ -50,24 +52,18 @@ const Quiz = () => {
         setAnswer(country.capital[0]);
     }
 
-    function checkAnswer() {
-        if (answer === chosen) {
-            return true 
-        } else {
-            return false
-        }
-    }
-
     function submitChosen() {
         let points = 0;
-        if (checkAnswer()) {
-            points = score + 10;
-            setScore(points);
-            console.log(score);
-        } else {
-            console.log("wrong answer")
+        if (answer !== "") {
+            if (answer === chosen) {
+                points = score + 10;
+                setScore(points);
+                setPlayButton("Play Again");
+            } else {
+                setPlayButton("Try Again");
+            }
+            clearQuiz();
         }
-        clearQuiz();
     }
 
     function clearQuiz() {
@@ -75,7 +71,6 @@ const Quiz = () => {
         setOptions([]);
         setAnswer("");
         setChosen("");
-        setPlayButton("Try Again")
     }
 
     return (
