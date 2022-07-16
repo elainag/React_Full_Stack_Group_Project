@@ -13,8 +13,11 @@ MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
   .then((client) => {
     const db = client.db('react_app');
     const countriesCollection = db.collection('countries');
+    const scoresCollection = db.collection('scores');
     const countriesRouter = createRouter(countriesCollection);
+    const scoresRouter = createRouter(scoresCollection);
     app.use('/api/countries', countriesRouter);
+    app.use('/api/scores', scoresRouter);
   })
   .catch(console.err);
 
