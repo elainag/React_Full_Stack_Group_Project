@@ -1,22 +1,37 @@
 import React, { useEffect, useState } from "react";
 
 const Quiz = () => {
+    const [countries, setCountries] = useState([]);
     const [quiz, setQuiz] = useState({});
 
-    useEffect(() => {getQuiz()},[])
+    useEffect(() => {getCountries()},[])
 
-    function getQuiz() {
-        fetch("https://api.api-ninjas.com/v1/trivia?category=", {
-            headers: {
-                'X-Api-Key': 'Mu9/196xPoZlAapoh0Vc8Q==DllOi1W7I3lXvPvL'
-            }
-        })
+    function getCountries() {
+        fetch("https://restcountries.com/v3.1/all")
         .then(result => result.json())
-        .then(data => setQuiz(data[0]))
-        console.log(quiz);
+        .then(data => setCountries(data))
+        console.log(countries)
     }
 
-    return <button onClick={getQuiz}>Get Quiz</button>
+    function getRandomIndex() {
+        const min = 0;
+        const max = countries.length - 1;
+        const index = Math.floor(Math.random() * (max - min) + min);
+        console.log(index);
+        return index;
+    }
+
+    function getCountry() {
+        
+    }
+
+    return (
+        <div>
+            {/* <button onClick={get}>Get Quiz</button> */}
+            {/* <button onClick={getCountries}>Get Countries</button> */}
+            <button onClick={getRandomIndex}>random index</button>
+        </div>
+    )
 }
 
 export default Quiz;
