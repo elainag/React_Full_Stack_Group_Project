@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
-import WorldMap from "../components/WorldMap";
+import GeoMap from "../components/GeoMap";
 
 
 function HomeContainer() {
 
   const [] = useState([]);
 
-
-
   // useEffect(() => {
   //   getFunctionName();
   // }, []);
 
-
-
   return (
     <>
       <h1>HomeContainer</h1>
-      <WorldMap />
+      <GeoMap/>
     </>
   )
 }
