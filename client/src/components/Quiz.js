@@ -16,15 +16,13 @@ const Quiz = () => {
         .then(data => setCountries(data))
     }
 
-    function getRandomIndex() {
-        const min = 0;
-        const max = countries.length - 1;
+    function getRandomIndex(min, max) {
         const index = Math.floor(Math.random() * (max - min) + min);
         return index;
     }
 
     function getCountry() {
-        const index = getRandomIndex();
+        const index = getRandomIndex(0, countries.length-1);
         setCountry(countries[index])
     }
 
@@ -39,13 +37,15 @@ const Quiz = () => {
         setQuestion(`What is the capital city of ${country.name.official}?`)
     }
     function generateOptions() {
-        const answer1 = countries[getRandomIndex()].capital[0];
-        const answer2 = countries[getRandomIndex()].capital[0];
-        const answer3 = countries[getRandomIndex()].capital[0];
-        let generatedOptions = [ answer1, answer2, answer3, country.capital[0]]
+        const option1 = countries[getRandomIndex(0, countries.length-1)].capital[0];
+        const option2 = countries[getRandomIndex(0, countries.length-1)].capital[0];
+        const option3 = countries[getRandomIndex(0, countries.length-1)].capital[0];
+        const index = getRandomIndex(0, 3);
+        console.log(index);
+        let generatedOptions = [ option1, option2, option3]
+        generatedOptions.splice(index, 0, country.capital[0])
         setOptions(generatedOptions)
     }
-
 
     return (
         <div>
