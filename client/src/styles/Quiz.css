@@ -1,0 +1,49 @@
+.quiz-box {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: lightcoral;
+}
+
+.play-button {
+    font-weight: bold;
+    width: 60px;
+    padding: 10px;
+    background-color: lightblue;
+    border: none;
+}
+
+.radio-div {
+    display: grid;
+    align-items: center;
+}
+
+.radio-span {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.radio-label {
+    align-items: center;
+    margin-left: 10px;
+}
+
+.radio {
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 5%;
+    margin: 5px 0;
+}
+
+.quiz-input {
+    background-color: lightgoldenrodyellow;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    margin: 10px;
+}
