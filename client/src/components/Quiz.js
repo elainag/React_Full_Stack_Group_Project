@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 
 const Quiz = () => {
     const [countries, setCountries] = useState([]);
+    const [country , setCountry] = useState({});
     const [quiz, setQuiz] = useState({});
 
     useEffect(() => {getCountries()},[])
+    useEffect(() => {getCountry()},[countries])
 
     function getCountries() {
         fetch("https://restcountries.com/v3.1/all")
@@ -22,14 +24,16 @@ const Quiz = () => {
     }
 
     function getCountry() {
-        
+        const index = getRandomIndex();
+        setCountry(countries[index])
+        console.log(country);
     }
 
     return (
         <div>
             {/* <button onClick={get}>Get Quiz</button> */}
             {/* <button onClick={getCountries}>Get Countries</button> */}
-            <button onClick={getRandomIndex}>random index</button>
+            <button onClick={getCountry}>random index</button>
         </div>
     )
 }
