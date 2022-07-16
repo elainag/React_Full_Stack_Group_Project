@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import QuizOptions from "./QuizOptions";
 
 const Quiz = () => {
     const [countries, setCountries] = useState([]);
@@ -49,8 +50,8 @@ const Quiz = () => {
 
     return (
         <div>
-            {/* <button onClick={get}>Get Quiz</button> */}
-            {/* <button onClick={getCountries}>Get Countries</button> */}
+            <h2>{question}</h2>
+            <QuizOptions options={options}/>
             <button onClick={getQuiz}>get quiz</button>
         </div>
     )
