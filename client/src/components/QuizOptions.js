@@ -13,13 +13,25 @@ const QuizOptions = ({options, submitChosen, setChosen}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div onChange={handleChange}>
-                <input type="radio" name="choice" value={options[0]}/>{options[0]}
-                <input type="radio" name="choice" value={options[1]}/>{options[1]}
-                <input type="radio" name="choice" value={options[2]}/>{options[2]}
-                <input type="radio" name="choice" value={options[3]}/>{options[3]}
+            <div className="radio-div" onChange={handleChange}>
+                <span className="radio-span">
+                    <input className="radio" type="radio" name="choice" value={options[0]}/>
+                    <label className="radio-label">{options[0]}</label>
+                </span>
+                <span className="radio-span">
+                    <input className="radio" type="radio" name="choice" value={options[1]}/>
+                    <label className="radio-label">{options[1]}</label>
+                </span>
+                <span className="radio-span">
+                    <input className="radio" type="radio" name="choice" value={options[2]}/>
+                    <label className="radio-label">{options[2]}</label>
+                </span>
+                <span className="radio-span">
+                    <input className="radio" type="radio" name="choice" value={options[3]}/>
+                    <label className="radio-label">{options[3]}</label>
+                </span>
             </div>
-            <div><input type="submit"/></div>
+            <div><input className="quiz-input" type="submit"/></div>
         </form>
     )
 }

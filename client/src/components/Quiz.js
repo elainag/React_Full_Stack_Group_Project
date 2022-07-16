@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import QuizOptions from "./QuizOptions";
+import "../styles/Quiz.css"
 
 const Quiz = () => {
     const [countries, setCountries] = useState([]);
@@ -10,6 +11,8 @@ const Quiz = () => {
     const [chosen, setChosen] = useState("");
     const [score, setScore] = useState(0);
     const [playButton, setPlayButton] = useState("PLAY")
+    const [quizText, setQuizText] = useState("Welcome back")
+    const [gameStatus, setGameStatus] = useState(0);
 
     useEffect(() => {getCountries()},[])
     useEffect(() => {getCountry()},[countries])
@@ -31,11 +34,13 @@ const Quiz = () => {
     }
 
     function getQuiz() {
+        setGameStatus(1);
         generateQuestion();
         generateOptions();
     }
 
     function generateQuestion() {
+        setQuizText("");
         getCountry();
         setPlayButton("Play");
         setQuestion(`What is the capital city of ${country.name.official}?`)
@@ -58,10 +63,13 @@ const Quiz = () => {
             if (answer === chosen) {
                 points = score + 10;
                 setScore(points);
+                setQuizText("Correct Answer!")
                 setPlayButton("Play Again");
             } else {
+                setQuizText("Sorry wrong answer.")
                 setPlayButton("Try Again");
             }
+            setGameStatus(0);
             clearQuiz();
         }
     }
@@ -75,11 +83,11 @@ const Quiz = () => {
 
     return (
         <div className="quiz-box">
-            <p>User Score: {score}</p>
-            <button onClick={getQuiz}>{playButton}</button>
+            <p>{quizText}</p>
+            <p>Your Score: {score}</p>
+            <button className="play-button" onClick={getQuiz}>{playButton}</button>
             <h2>{question}</h2>
-            <QuizOptions options={options} submitChosen={submitChosen} setChosen={setChosen}/>
-            
+            {gameStatus === 1 ? <QuizOptions options={options} submitChosen={submitChosen} setChosen={setChosen}/> : null}
         </div>
     )
 }
