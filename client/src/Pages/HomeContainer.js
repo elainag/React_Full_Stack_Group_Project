@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import WorldMap from "../components/WorldMap";
 
 
 function HomeContainer() {
@@ -7,14 +8,17 @@ function HomeContainer() {
 
 
 
-  useEffect(() => {
-    getFunctionName();
-  }, []);
+  // useEffect(() => {
+  //   getFunctionName();
+  // }, []);
 
 
 
   return (
-    <h1>HomeContainer</h1>
+    <>
+      <h1>HomeContainer</h1>
+      <WorldMap />
+    </>
   )
 }
 

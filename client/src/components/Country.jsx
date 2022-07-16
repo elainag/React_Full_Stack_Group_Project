@@ -1,7 +1,7 @@
 const Country = () => {
 
   return (
-    <h1>Country Map</h1>
+    <h3>Country</h3>
   )
 
 }

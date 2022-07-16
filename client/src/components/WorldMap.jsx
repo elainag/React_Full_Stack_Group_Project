@@ -1,7 +1,12 @@
+import Country from "./Country";
+
 const WorldMap = () => {
 
   return (
-    <h1>World Map</h1>
+    <>
+      <h2>World Map</h2>
+      <Country />
+    </>
   )
 
 }
