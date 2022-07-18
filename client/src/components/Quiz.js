@@ -5,6 +5,7 @@ import "../styles/Quiz.css"
 
 const Quiz = () => {
     const [scores, setScores] = useState([]); // gets all the scores, users from our database
+    const [user, setUser] = useState("charlie05");
     const [countries, setCountries] = useState([]); //gets all the country objects
     const [country , setCountry] = useState({}); //sets the country selected for quiz
     const [question, setQuestion] = useState(""); // the question
