@@ -28,16 +28,23 @@ function GeoMap() {
                             setContent(`${NAME}`);
                         }}
                         onClick={() => {
-                            const NAME  = geo.properties.name;
+                            const NAME  = geo.id;
                             setSelectedCountry(`${NAME}`);
                         }}
                         onMouseLeave={() => {
                             setContent("");
                         }}
                         style={{
+                        default:{
+                            outline: "none"
+                        },
                         hover: {
                             fill: "#ff33a7",
                             outline: "none"
+                        },
+                        activated: {
+                            fill: "#eca146",
+                            outline: "none" 
                         }
                         }}
                     />

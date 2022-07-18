@@ -5,8 +5,60 @@ const app = express();
 const cors = require("cors");
 
 app.use(cors())
-
 app.use(express.json());
+
+app.get('/wiki/country/:country', (req, res) => {
+  const country = req.params.country
+  fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=${country}&rvsection=0&rvparse`)
+  .then(res => res.json())
+  .then((data) => {
+    const key = Object.keys(data.query.pages)
+    return data.query.pages[key].revisions
+  })
+ 
+    // Promise.all(promises)
+    .then((result) => {
+      res.json(result)
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500);
+      res.json({ status: 500, error: err });
+    });
+  })
+
+
+// takes in a wikipedia url example: berber_languages, and outputs links to webm files
+// todo: get .flac files, get mp3
+app.get('/wiki/language/:language', (req, res) => {
+  const language = req.params.language
+  fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${language}&format=json`)
+  .then(res => res.json())
+    .then((data) => {
+      const webmFiles = data.parse.images.filter((file)=>{
+        return file.includes('.webm')
+      })
+      const promises = webmFiles.map((file)=>{
+        return fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=File:${file}&prop=imageinfo&iilimit=50&iiend=2007-12-31T23%3A59%3A59Z&iiprop=timestamp%7Cuser%7Curl&format=json`)
+        .then(res => res.json())
+          .then((data) => {
+            return data.query.pages[-1].imageinfo[0].url
+          })
+      });
+ 
+    Promise.all(promises)
+    .then((result) => {
+      res.json(result)
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500);
+      res.json({ status: 500, error: err });
+    });
+  })
+})
+
+
 const MongoClient = require('mongodb').MongoClient;
 const createRouter = require('./helpers/create_router.js');
 
