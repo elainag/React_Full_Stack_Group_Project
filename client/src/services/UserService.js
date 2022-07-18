@@ -1,6 +1,6 @@
 const baseURL = 'http://localhost:9000/api/scores'
 
-const ScoreService = {
+const UserService = {
     getScores() {
         return fetch(baseURL)
         .then(res => res.json());
@@ -18,4 +18,4 @@ const ScoreService = {
     },
 }
 
-export default ScoreService;
+export default UserService;
