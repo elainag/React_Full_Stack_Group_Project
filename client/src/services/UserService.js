@@ -9,7 +9,7 @@ const UserService = {
     updateUsers(user) {
         return fetch(baseURL + user._id, {
             method: 'PUT',
-            body: JSON.stringify(score),
+            body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }
