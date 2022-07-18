@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
 import Quiz from "../components/Quiz";
 import User from "../components/User";
+import ScoreBoard from "../components/ScoreBoard";
 import "../styles/Quiz.css"
 
 const QuizContainer = () => {
@@ -65,7 +66,7 @@ const QuizContainer = () => {
         setQuizText("");
         getCountry();
         setPlayButton("Play");
-        setQuestion(`What is the capital city of ${country.name.official}?`)
+        setQuestion(`What is the capital city of ${country.name.common}?`)
     }
 
     // generates 3 random answers in an array 
@@ -98,6 +99,19 @@ const QuizContainer = () => {
                 setQuizText("Correct Answer!");
                 setPlayButton("Play Again");
             } else {
+                let loser = user;
+                let QA = {
+                    category: "capitals",
+                    question: question,
+                    answer: answer
+                }
+
+                const userAnswers = users.QA.map(item => item.answer)
+                
+                if (userAnswers.includes(answer)) {} else {
+                    loser.QA_history.push(QA);
+                    setUser(loser);
+                }
                 setQuizText("Sorry wrong answer.")
                 setPlayButton("Try Again");
             }
@@ -128,6 +142,7 @@ const QuizContainer = () => {
                 submitChosen={submitChosen} 
                 setChosen={setChosen}
             />
+            <ScoreBoard users={users}/>
         </div>
     )
 }
