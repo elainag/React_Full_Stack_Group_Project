@@ -6,15 +6,20 @@ const User = ({ users, onSelectedUser }) => {
     })
     
     function handleChange(event) {
-        const userID = event.target.value;
-        onSelectedUser(userID);
+        const userId = event.target.value;
+        onSelectedUser(userId);
     }
 
     return (
         <select onChange={handleChange}>
+            <option value="">Select User</option>
             {userOptions}
         </select>
     )
+    //     <select onChange={handleChange}>
+    //         {userOptions}
+    //     </select>
+    // )
 }
 
 export default User;

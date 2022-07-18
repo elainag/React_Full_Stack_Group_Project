@@ -20,6 +20,7 @@ const QuizContainer = () => {
 
     useEffect(() => {getCountries()},[])
     useEffect(() => {getCountry()},[countries])
+    useEffect(() => {submitChosen()}, [])
 
     //gets users from database
     useEffect(() => {
@@ -30,6 +31,7 @@ const QuizContainer = () => {
     function onSelectedUser(userID) {
         const selectedUser = users.find(user => user._id === userID);
         setUser(selectedUser);
+        setScore(selectedUser.score);
     }
 
     // gets all the country objects from API
@@ -88,9 +90,12 @@ const QuizContainer = () => {
         let points = 0;
         if (answer !== "") {
             if (answer === chosen) {
-                points = score + 10;
-                setScore(points);
-                setQuizText("Correct Answer!")
+                let winner = user;
+                winner.score += 10;
+                setUser(winner);
+                setScore(winner.score);
+                UserService.updateUsers(user);
+                setQuizText("Correct Answer!");
                 setPlayButton("Play Again");
             } else {
                 setQuizText("Sorry wrong answer.")
