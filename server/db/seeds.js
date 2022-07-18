@@ -19,6 +19,7 @@ db.countries.insertMany([
 db.users.insertMany([
   {
     "username": "charlie05",
+    "email": "charlie@mail.com",
     "score": 10,
     "rank": 0,
     "QA_history": [
@@ -36,6 +37,7 @@ db.users.insertMany([
   },
   {
     "username": "sushi04",
+    "email": "sushi@mail.com",
     "score": 10,
     "rank": 0,
     "QA_history": [
