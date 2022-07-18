@@ -7,6 +7,15 @@ const cors = require("cors");
 app.use(cors())
 app.use(express.json());
 
+const anthemFormat = function (data){
+  const key = Object.keys(data.query.pages)
+  const dataBody =  data.query.pages[key].revisions[0]
+  const stringifiedDataBody = JSON.stringify(dataBody)
+  const anthemBody = stringifiedDataBody.split('<b>Anthem:</b>').pop().split('\" class=')[0]
+  const anthem = anthemBody.split('href=\\\"/wiki/').pop().split('\\')[0]
+  return anthem.split('#')[0]
+}
+
 app.get('/wiki/anthem/:country', (req, res) => {
   const country = req.params.country
   fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=${country}&rvsection=0&rvparse`)
