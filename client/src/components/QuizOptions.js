@@ -1,6 +1,9 @@
 import React from "react";
 
-const QuizOptions = ({options, submitChosen, setChosen}) => {
+// receives generated options array
+// setChosen function to update the chosen answer
+// submitChosen function reference to submit the chosen answers
+const QuizOptions = ({options, setChosen, submitChosen}) => {
 
     function handleChange(event) {
         setChosen(event.target.value);
@@ -11,6 +14,8 @@ const QuizOptions = ({options, submitChosen, setChosen}) => {
         submitChosen();
     }
 
+    // map function didn't generate the radio button input so I had to repeat code for each option
+    // luckily there are only 4 options
     return (
         <form onSubmit={handleSubmit}>
             <div className="radio-div" onChange={handleChange}>

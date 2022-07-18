@@ -16,6 +16,9 @@ function HomeContainer() {
       <h1>HomeContainer</h1>
       <GeoMap/>
       <Quiz/>
+      <br></br>
+      <br></br>
+      <br></br>
     </>
   )
 }
