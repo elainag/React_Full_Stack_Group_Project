@@ -29,22 +29,14 @@ app.get('/wiki/anthem/:country', (req, res) => {
           const mediaWithAudio = data.parse.images.filter((file)=>{
             return file.includes('.ogg')
           })
-          const promises = mediaWithAudio.map((file)=>{
-            return fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=File:${file}&prop=imageinfo&iilimit=50&iiend=2007-12-31T23%3A59%3A59Z&iiprop=timestamp%7Cuser%7Curl&format=json`)
+            fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=File:${mediaWithAudio[0]}&prop=imageinfo&iilimit=50&iiend=2007-12-31T23%3A59%3A59Z&iiprop=timestamp%7Cuser%7Curl&format=json`)
             .then(res => res.json())
               .then((data) => {
-                return data.query
-                // if(data.query.pages[-1].imageinfo[0].url){
-                //   return data.query.pages[-1].imageinfo[0].url
-                // }else{
-                //   return data.query
-                // }
-              })
-            })
-    Promise.all(promises)
-    .then((result) => {
-      res.json(result)
-    })
+                const keys = Object.keys(data.query.pages)
+                console.log('keys:',keys[0])
+                const anthemUrl = data.query.pages[keys[0]].imageinfo[0].url
+                res.json({anthemUrl})
+              })    
     .catch((err) => {
       console.error(err);
       res.status(500);
