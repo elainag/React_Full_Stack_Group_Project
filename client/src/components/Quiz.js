@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import ScoreService from "../services/ScoreService";
 import QuizOptions from "./QuizOptions";
 import "../styles/Quiz.css"
 
 const Quiz = () => {
+    const [scores, setScores] = useState([]); // gets all the scores, users from our database
+    const [user, setUser] = useState("charlie05");
     const [countries, setCountries] = useState([]); //gets all the country objects
     const [country , setCountry] = useState({}); //sets the country selected for quiz
     const [question, setQuestion] = useState(""); // the question
@@ -16,6 +19,12 @@ const Quiz = () => {
 
     useEffect(() => {getCountries()},[])
     useEffect(() => {getCountry()},[countries])
+
+    //gets users and scores from database
+    useEffect(() => {
+        ScoreService.getScores()
+        .then(scores => setScores(scores));
+    }, []);
 
     // gets all the country objects from API
     function getCountries() {
@@ -99,7 +108,7 @@ const Quiz = () => {
             <p>{quizText}</p>
             <p>Your Score: {score}</p>
             <button className="play-button" onClick={getQuiz}>{playButton}</button>
-            <h2>{question}</h2>
+            <h3>{question}</h3>
             {gameStatus === 1 ? <QuizOptions options={options} submitChosen={submitChosen} setChosen={setChosen}/> : null}
         </div>
     )
