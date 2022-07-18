@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
-import QuizOptions from "../components/QuizOptions";
 import Quiz from "../components/Quiz";
+import User from "../components/User";
 import "../styles/Quiz.css"
 
 const QuizContainer = () => {
     const [users, setUsers] = useState([]); // gets all the scores, users from our database
-    const [user, setUser] = useState("charlie05");
+    const [user, setUser] = useState({});
     const [countries, setCountries] = useState([]); //gets all the country objects
     const [country , setCountry] = useState({}); //sets the country selected for quiz
     const [question, setQuestion] = useState(""); // the question
@@ -26,6 +26,11 @@ const QuizContainer = () => {
         UserService.getUsers()
         .then(users => setUsers(users));
     }, []);
+
+    function onSelectedUser(userID) {
+        const selectedUser = users.find(user => user._id === userID);
+        setUser(selectedUser);
+    }
 
     // gets all the country objects from API
     function getCountries() {
@@ -106,6 +111,7 @@ const QuizContainer = () => {
 
     return (
         <div className="quiz-box">
+            <User users={users} onSelectedUser={onSelectedUser}/>
             <Quiz 
                 quizText={quizText}
                 score={score}
