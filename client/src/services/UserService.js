@@ -1,15 +1,15 @@
-const baseURL = 'http://localhost:9000/api/scores'
+const baseURL = 'http://localhost:9000/api/users/'
 
 const UserService = {
-    getScores() {
+    getUsers() {
         return fetch(baseURL)
         .then(res => res.json());
     },
 
-    updateScores(score) {
-        return fetch(baseURL + score._id, {
+    updateUsers(user) {
+        return fetch(baseURL + user._id, {
             method: 'PUT',
-            body: JSON.stringify(score),
+            body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }

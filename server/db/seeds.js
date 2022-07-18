@@ -20,7 +20,7 @@ db.users.insertMany([
   {
     "username": "charlie05",
     "score": 10,
-    "rank": 1,
+    "rank": 0,
     "QA_history": [
       {
         "category": "geography",
@@ -37,7 +37,7 @@ db.users.insertMany([
   {
     "username": "sushi04",
     "score": 10,
-    "rank": 1,
+    "rank": 0,
     "QA_history": [
       {
         "category": "mathematics",
