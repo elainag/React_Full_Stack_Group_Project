@@ -1,4 +1,6 @@
 .quiz-box {
+    display: grid;
+    justify-items: center;
     background-color: aqua;
     margin: 20px;
     padding: 20px;

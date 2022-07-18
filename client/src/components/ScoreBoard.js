@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/ScoreBoard.css"
 
 const ScoreBoard = ({ users }) => {
 
@@ -7,9 +8,9 @@ const ScoreBoard = ({ users }) => {
     const scoreRows = users.map(user => {
         return (
             <tr key={user._id}>
-                <td>{user.score}</td>
+                <td>{user.score} points</td>
                 <td>{user.username}</td>
-                <td>{user.email} mins</td>
+                <td>{user.email}</td>
             </tr>
         )
     })

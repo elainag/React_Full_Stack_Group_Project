@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import "../styles/User.css"
 
 const User = ({ users, onSelectedUser }) => {
     const userOptions = users.map(user => {
