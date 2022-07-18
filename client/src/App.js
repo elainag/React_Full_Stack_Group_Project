@@ -1,17 +1,11 @@
 import './App.css';
-
-import PopulateCountries from './services/PopulateCountries';
-
-import HomeContainer from './Pages/HomeContainer';
+import HomeContainer from './containers/HomeContainer';
 
 
 function App() {
   return (
     <div className="App">
-      <h1>App</h1>
-      <PopulateCountries />
-      <HomeContainer />
-
+      <HomeContainer/>
     </div>
   );
 }
