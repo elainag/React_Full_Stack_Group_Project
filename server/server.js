@@ -8,21 +8,27 @@ app.use(cors())
 app.use(express.json());
 
 const anthemFormat = function (data){
+  const notFound = '{"*":"<div class='
   const key = Object.keys(data.query.pages)
   const dataBody =  data.query.pages[key].revisions[0]
   const stringifiedDataBody = JSON.stringify(dataBody)
   const anthemBody = stringifiedDataBody.split('<b>Anthem:</b>').pop().split('\" class=')[0]
-  const anthem = anthemBody.split('href=\\\"/wiki/').pop().split('\\')[0]
-  return anthem.split('#')[0]
+  const anthemFull = anthemBody.split('href=\\\"/wiki/').pop().split('\\')[0]
+  const anthem = anthemFull.split('#')[0]
+  if (anthem !== notFound){
+    return anthem
+  }else{
+    return false
+  }
 }
-
+// Go to a anthem/country route and get back the national anthem url. It does it's best
 app.get('/wiki/anthem/:country', (req, res) => {
   const country = req.params.country
   fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=${country}&rvsection=0&rvparse`)
   .then(res => res.json())
   .then((data) => {
     anthem = anthemFormat(data)
-    console.log(anthem)
+    console.log('anthem:', anthem)
     return fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${anthem}&format=json`)
       .then(res => res.json())
         .then((data) => {
