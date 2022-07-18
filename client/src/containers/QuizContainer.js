@@ -23,7 +23,7 @@ const QuizContainer = () => {
 
     //gets users from database
     useEffect(() => {
-        UserService.getScores()
+        UserService.getUsers()
         .then(users => setUsers(users));
     }, []);
 
