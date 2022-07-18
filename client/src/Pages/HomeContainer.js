@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GeoMap from "../components/GeoMap";
-
+import Quiz from "../components/Quiz";
+import User from "../components/User";
 
 function HomeContainer() {
 
@@ -13,7 +14,9 @@ function HomeContainer() {
   return (
     <>
       <h1>HomeContainer</h1>
+      <User/>
       <GeoMap/>
+      <Quiz/>
     </>
   )
 }
