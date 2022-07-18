@@ -18,37 +18,37 @@ db.countries.insertMany([
 //  These Collection will hold the user data related quiz section
 db.users.insertMany([
   {
-      "username": "charlie05",
-      "score": 10,
-      "rank": 1,
-      "QA_history": [
-          {
-          "category": "geography",
-          "question": "What is the capital of Chad ?",
-          "answer": "N'djamena"
-          },
-          {
-              "category": "language",
-              "question": "The word rodent comes from the italian 'rodere', which means?",
-              "answer": "Gnaw"
-          }
-          ]
+    "username": "charlie05",
+    "score": 10,
+    "rank": 1,
+    "QA_history": [
+      {
+        "category": "geography",
+        "question": "What is the capital of Chad ?",
+        "answer": "N'djamena"
+      },
+      {
+        "category": "language",
+        "question": "The word rodent comes from the italian 'rodere', which means?",
+        "answer": "Gnaw"
+      }
+    ]
   },
   {
-      "username": "sushi04",
-      "score": 10,
-      "rank": 1,
-      "QA_history": [
-          {
-              "category": "mathematics",
-              "question": "What is x to the power of zero equal to?",
-              "answer": "One"
-          },
-          {
-              "category": "mathematics",
-              "question": "How many corners are there in a cube",
-              "answer": "Eight"
-          }
-          ]
+    "username": "sushi04",
+    "score": 10,
+    "rank": 1,
+    "QA_history": [
+      {
+        "category": "mathematics",
+        "question": "What is x to the power of zero equal to?",
+        "answer": "One"
+      },
+      {
+        "category": "mathematics",
+        "question": "How many corners are there in a cube",
+        "answer": "Eight"
+      }
+    ]
   }
 ]);
