@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import ScoreService from "../services/ScoreService";
+import UserService from "../services/UserService";
 import QuizOptions from "../components/QuizOptions";
 import Quiz from "../components/Quiz";
 import "../styles/Quiz.css"
 
 const QuizContainer = () => {
-    const [scores, setScores] = useState([]); // gets all the scores, users from our database
+    const [users, setUsers] = useState([]); // gets all the scores, users from our database
     const [user, setUser] = useState("charlie05");
     const [countries, setCountries] = useState([]); //gets all the country objects
     const [country , setCountry] = useState({}); //sets the country selected for quiz
@@ -21,10 +21,10 @@ const QuizContainer = () => {
     useEffect(() => {getCountries()},[])
     useEffect(() => {getCountry()},[countries])
 
-    //gets users and scores from database
+    //gets users from database
     useEffect(() => {
-        ScoreService.getScores()
-        .then(scores => setScores(scores));
+        UserService.getScores()
+        .then(users => setUsers(users));
     }, []);
 
     // gets all the country objects from API
