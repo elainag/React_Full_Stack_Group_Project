@@ -32,7 +32,7 @@ const UserLoginForm = ({ users, setQuizText, onSelectedUser, setSession }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
             <div>
                 <label>
                     Log in with Email
