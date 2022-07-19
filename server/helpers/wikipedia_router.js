@@ -41,7 +41,7 @@ const languagesFormat = function (data){
         return languagesBackup
     }
 }
-
+// Back up in case infobox-parser fails
 const deepLanguageParse = function (stringifiedDataBody){
     const languages = []
     if (stringifiedDataBody.includes('official_language')){
@@ -57,6 +57,7 @@ const deepLanguageParse = function (stringifiedDataBody){
         languages.push(m[1]);
         }
     }
+    // only return strings over two words if the second word is language
     return languages
 }
 
@@ -85,7 +86,7 @@ const checkRedirects = function (input){
 router.get('/:country', (req, res) => {
 const country = req.params.country
 checkRedirects(country).then((wikipediafied)=>{
-    res.json({wikipediafied})
+    res.json(wikipediafied)
 })
     .catch((err) => {
     console.error(err);
@@ -102,7 +103,7 @@ router.get('/:country/languages', (req, res) => {
         .then(res => res.json())
         .then((data) => {
             const languagesFound = languagesFormat(data)
-            res.json({languagesFound})
+            res.json(languagesFound)
         })
 
     .catch((err) => {
@@ -136,8 +137,9 @@ fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=con
             .then(res => res.json())
             .then((data) => {
                 const keys = Object.keys(data.query.pages)
+                console.log(data.query.pages[keys[0]].imageinfo[0].url)
                 const anthemUrl = data.query.pages[keys[0]].imageinfo[0].url
-                res.json({anthemUrl})
+                res.json(anthemUrl)
             })    
     .catch((err) => {
     console.error(err);
@@ -153,7 +155,8 @@ fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=con
 // takes in a wikipedia url example: berber_languages, and outputs links to webm files
 router.get('/language/:language', (req, res) => {
 const language = req.params.language
-fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${language}&format=json`)
+checkRedirects(language).then((wikipediafied)=>{
+fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${wikipediafied}&format=json`)
 .then(res => res.json())
     .then((data) => {
     const mediaWithAudio = data.parse.images.filter((file)=>{
@@ -180,10 +183,10 @@ fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${langua
     console.error(err);
     res.status(500);
     res.json({ status: 500, error: err });
-    });
+    })
 })
 })
-
+})
 
 
 
