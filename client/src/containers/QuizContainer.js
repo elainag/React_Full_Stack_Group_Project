@@ -4,7 +4,7 @@ import Quiz from "../components/Quiz";
 import ScoreBoard from "../components/ScoreBoard";
 import "../styles/Quiz.css"
 
-const QuizContainer = ({user, setUser, users, setUsers, score, setScore}) => {
+const QuizContainer = ({user, setUser, users, score, setScore}) => {
     const [countries, setCountries] = useState([]); //gets all the country objects
     const [country , setCountry] = useState({}); //sets the country selected for quiz
     const [question, setQuestion] = useState(""); // the question

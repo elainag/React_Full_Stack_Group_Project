@@ -7,6 +7,7 @@ import User from "../components/User";
 function HomeContainer() {
   const [users, setUsers] = useState([]); // gets all the scores, users from our database
   const [user, setUser] = useState({});
+  const [session, setSession] = useState({userLoggedIn: false, userDenied: false})
   const [score, setScore] = useState(0); // user score
 
   useEffect(() => {
@@ -18,12 +19,16 @@ function HomeContainer() {
     const selectedUser = users.find(user => user._id === userID);
     setUser(selectedUser);
     setScore(selectedUser.score);
-}
+  }
 
   return (
     <>
       <h1>HomeContainer</h1>
-      <User users={users} onSelectedUser={onSelectedUser}/>
+      <User 
+        users={users} 
+        onSelectedUser={onSelectedUser} 
+        session={session} 
+        setSession={setSession}/>
       <GeoMapContainer/>
       <QuizContainer 
         user={user} 

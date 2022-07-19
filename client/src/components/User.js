@@ -1,25 +1,26 @@
-import React from "react"
-import "../styles/User.css"
+import React from "react";
+import UserLoginForm from "./UserLoginForm";
+import UserRegisterForm from "./UserRegisterForm";
+import "../styles/User.css";
 
-const User = ({ users, onSelectedUser }) => {
-    const userOptions = users.map(user => {
-        return <option key={user._id} value={user._id}>{user.username}</option>
-    })
-    
-    function handleChange(event) {
-        const userId = event.target.value;
-        onSelectedUser(userId);
-    }
+const User = ({ users, onSelectedUser, addUser , session, setSession}) => {
 
     return (
-        <select onChange={handleChange}>
-            <option value="">Select User</option>
-            {userOptions}
-        </select>
+        <div>
+            { session.userLoggedIn === false ? 
+            <UserLoginForm users={users} onSelectedUser={onSelectedUser} setSession={setSession}/> 
+            : null }
+            { session.userDenied === true ?
+            <UserRegisterForm addUser={addUser}/> 
+            : null }
+        </div>
     )
-    //     <select onChange={handleChange}>
-    //         {userOptions}
-    //     </select>
+
+    // return (
+    //     <>
+    //         <UserLoginForm users={users} onSelectedUser={onSelectedUser}/>
+    //         <UserRegisterForm addUser={addUser}/>
+    //     </>
     // )
 }
 

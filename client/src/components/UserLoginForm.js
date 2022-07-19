@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "../styles/User.css"
 
-const UserLoginForm = ({ users, onSelectedUser }) => {
+const UserLoginForm = ({ users, onSelectedUser, setSession }) => {
     const [userEmail, setUserEmail] = useState("");
 
     const handleEmailChange = (ev) => setUserEmail(ev.target.value);
@@ -18,9 +18,9 @@ const UserLoginForm = ({ users, onSelectedUser }) => {
             const userFound = users.find(user => user.email === userEmail)
             const userId = userFound._id;
             onSelectedUser(userId);
-            console.log("user in database")
+            setSession({userLoggedIn: true, userDenied: false});
         } else {
-            console.log("user is not found in database")
+            setSession({userLoggedIn: false, userDenied: true});
         }
     }
 
