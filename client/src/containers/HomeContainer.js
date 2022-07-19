@@ -11,6 +11,7 @@ function HomeContainer() {
   const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
   const [session, setSession] = useState({ userLoggedIn: false, userDenied: false })
   const [score, setScore] = useState(0); // user score
+  const [search, setSearch] = useState("") // user input on search form
 
   useEffect(() => {
     UserService.getUsers()
@@ -26,6 +27,7 @@ function HomeContainer() {
   return (
     <>
       <h1>HomeContainer</h1>
+      <SearchContainer />
       <User
         users={users}
         setUser={setUser}
@@ -44,7 +46,6 @@ function HomeContainer() {
         score={score}
         setScore={setScore}
       />
-      <SearchContainer />
     </>
   )
 }
