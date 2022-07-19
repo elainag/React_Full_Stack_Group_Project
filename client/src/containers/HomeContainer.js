@@ -11,24 +11,24 @@ function HomeContainer() {
 
   useEffect(() => {
     UserService.getUsers()
-    .then(users => setUsers(users));
+      .then(users => setUsers(users));
   }, []);
 
   function onSelectedUser(userID) {
     const selectedUser = users.find(user => user._id === userID);
     setUser(selectedUser);
     setScore(selectedUser.score);
-}
+  }
 
   return (
     <>
       <h1>HomeContainer</h1>
-      <User users={users} onSelectedUser={onSelectedUser}/>
-      <GeoMapContainer/>
-      <QuizContainer 
-        user={user} 
-        setUser={setUser} 
-        users={users} 
+      <User users={users} onSelectedUser={onSelectedUser} />
+      <GeoMapContainer />
+      <QuizContainer
+        user={user}
+        setUser={setUser}
+        users={users}
         setUsers={setUsers}
         score={score}
         setScore={setScore}
