@@ -1,6 +1,7 @@
 import React from "react";
+import CountryData from "./CountryData";
 
-const CountrySearch = ({ country }) => {
+const SearchCountry = ({ countries, search }) => {
   const countryInfo = countries.filter((country, key) => {
     if (search === "") {
       return <CountryData key={key} value={country.country.id} country={country} />
@@ -19,4 +20,4 @@ const CountrySearch = ({ country }) => {
   )
 }
 
-export default CountrySearch;
+export default SearchCountry;
