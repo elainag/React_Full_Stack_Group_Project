@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import ReactTooltip from 'react-tooltip';
-import "../components/GeoMapContainer.css"
+import "../styles/GeoMapContainer.css"
 
 function GeoMapContainer() {
     const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
