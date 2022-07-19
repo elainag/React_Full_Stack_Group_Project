@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
 import Quiz from "../components/Quiz";
-import User from "../components/User";
 import ScoreBoard from "../components/ScoreBoard";
 import "../styles/Quiz.css"
 
-const QuizContainer = () => {
-    const [users, setUsers] = useState([]); // gets all the scores, users from our database
-    const [user, setUser] = useState({});
+const QuizContainer = ({user, setUser, users, setUsers, score, setScore}) => {
     const [countries, setCountries] = useState([]); //gets all the country objects
     const [country , setCountry] = useState({}); //sets the country selected for quiz
     const [question, setQuestion] = useState(""); // the question
     const [options, setOptions] = useState([]); // multiple choices for answer
     const [answer, setAnswer] =useState(""); // the correct answer
     const [chosen, setChosen] = useState(""); // the radio button chosen by user
-    const [score, setScore] = useState(0); // user score
     const [playButton, setPlayButton] = useState("PLAY") // this button generates the quiz
     const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
     const [gameStatus, setGameStatus] = useState(0); // this defines the items display on the quiz component
@@ -22,18 +18,6 @@ const QuizContainer = () => {
     useEffect(() => {getCountries()},[])
     useEffect(() => {getCountry()},[countries])
     useEffect(() => {submitChosen()}, [])
-
-    //gets users from database
-    useEffect(() => {
-        UserService.getUsers()
-        .then(users => setUsers(users));
-    }, []);
-
-    function onSelectedUser(userID) {
-        const selectedUser = users.find(user => user._id === userID);
-        setUser(selectedUser);
-        setScore(selectedUser.score);
-    }
 
     // gets all the country objects from API
     function getCountries() {
@@ -86,6 +70,7 @@ const QuizContainer = () => {
     // submits the chosen answer of the user
     // updates the quiz text after win or lose
     // in win case adds points to the score
+    // in lost case adds QA to the user QA_history
     // clears the quiz component
     function submitChosen() {
         let points = 0;
@@ -106,7 +91,7 @@ const QuizContainer = () => {
                     answer: answer
                 }
 
-                const userAnswers = users.QA.map(item => item.answer)
+                const userAnswers = user.QA_history.map(item => item.answer)
                 
                 if (userAnswers.includes(answer)) {} else {
                     loser.QA_history.push(QA);
@@ -130,7 +115,6 @@ const QuizContainer = () => {
 
     return (
         <div className="quiz-box">
-            <User users={users} onSelectedUser={onSelectedUser}/>
             <Quiz 
                 quizText={quizText}
                 score={score}
