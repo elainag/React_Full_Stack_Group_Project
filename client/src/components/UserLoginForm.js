@@ -9,6 +9,7 @@ const UserLoginForm = ({ users, onSelectedUser, setSession }) => {
     function handleSubmit(event) {
         event.preventDefault();
         validateUser(userEmail);
+        setUserEmail("");
     }
 
     function validateUser(userEmail) {
