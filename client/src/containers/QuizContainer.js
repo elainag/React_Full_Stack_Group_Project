@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
 import Quiz from "../components/Quiz";
 import ScoreBoard from "../components/ScoreBoard";
+import UserQAHistory from "../components/UserQAHistory";
 import "../styles/Quiz.css"
 
 const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setScore}) => {
@@ -60,7 +61,6 @@ const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setS
         const option2 = countries[getRandomIndex(0, countries.length-1)].capital[0];
         const option3 = countries[getRandomIndex(0, countries.length-1)].capital[0];
         const index = getRandomIndex(0, 3);
-        console.log(index);
         let generatedOptions = [ option1, option2, option3];
         generatedOptions.splice(index, 0, country.capital[0]);
         setOptions(generatedOptions);
@@ -127,6 +127,7 @@ const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setS
                 setChosen={setChosen}
             />
             <ScoreBoard users={users}/>
+            <UserQAHistory />
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import GeoMapContainer from "./GeoMapContainer";
+// import GeoMapContainer from "./GeoMapContainer";
 import QuizContainer from "./QuizContainer";
 import UserService from "../services/UserService";
 import User from "../components/User";
@@ -43,6 +43,7 @@ function HomeContainer() {
         score={score}
         setScore={setScore}
       />
+      
     </>
   )
 }
