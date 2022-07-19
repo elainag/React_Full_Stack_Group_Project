@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const parseInfo = require("infobox-parser")
 
+// Function used to format country infobox text into national anthem string
 const anthemFormat = function (data){
     const notFound = '{"*":"<div class='
     const key = Object.keys(data.query.pages)
@@ -16,6 +18,50 @@ const anthemFormat = function (data){
     }
 }
 
+// Function used to format country infobox text into languages string
+const languagesFormat = function (data){
+    const foundLanguages = []
+    const notFound = '{"*":"<div class='
+    const key = Object.keys(data.query.pages)
+    const dataBody =  data.query.pages[key].revisions[0]
+    const stringifiedDataBody = JSON.stringify(dataBody)
+
+    const info = parseInfo(stringifiedDataBody)
+    // console.log(info)
+
+    foundLanguages.push(info.general.languages,info.general.officialLanguages)
+    const languages = foundLanguages.filter(language => {
+        return language !== undefined;
+    })
+
+    if(languages.length !== 0){
+        return languages
+    }else{
+        const languagesBackup = deepLanguageParse(stringifiedDataBody)
+        return languagesBackup
+    }
+}
+
+const deepLanguageParse = function (stringifiedDataBody){
+    const languages = []
+    if (stringifiedDataBody.includes('official_language')){
+        let body = stringifiedDataBody.split('official_language').pop().split('          = ')[0]
+        let regex = /\[([^\][]*)]/g;
+        while (m = regex.exec(body)) {
+        languages.push(m[1]);
+        }
+    }else if(stringifiedDataBody.includes('languages              = ')){
+        let body = stringifiedDataBody.split('languages              = ').pop().split('          = ')[0]
+        let regex = /\[([^\][]*)]/g;
+        while (m = regex.exec(body)) {
+        languages.push(m[1]);
+        }
+    }
+    return languages
+}
+
+
+// Function used to get past redirects. (Find true page URL)
 const checkRedirects = function (input){
     return fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=langlinks&format=json&lllimit=10&titles=${input}&redirects=`)
         .then(res => res.json())
@@ -35,11 +81,11 @@ const checkRedirects = function (input){
 
 
 // Country
-// takes in the country name and outputs country name[not needed](country route wikiformat), and country languages(country language routes wikiformat)
-router.get('/country/:country', (req, res) => {
+// takes in the country name and outputs country name wikipediafied
+router.get('/:country', (req, res) => {
 const country = req.params.country
 checkRedirects(country).then((wikipediafied)=>{
-    res.json({country, wikipediafied})
+    res.json({wikipediafied})
 })
     .catch((err) => {
     console.error(err);
@@ -48,18 +94,39 @@ checkRedirects(country).then((wikipediafied)=>{
     });
 })
 
+// Country/Languages
+// takes in a country and returns languages of the country (non wikipedified)
+router.get('/:country/languages', (req, res) => {
+    const country = req.params.country
+    fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=${country}&rvsection=0`)
+        .then(res => res.json())
+        .then((data) => {
+            const languagesFound = languagesFormat(data)
+            res.json({languagesFound})
+        })
 
-// Anthem
+    .catch((err) => {
+    console.error(err);
+    res.status(500);
+    res.json({ status: 500, error: err });
+    });
+    })
+
+
+
+// Country/Anthem
 // Go to a anthem/country_name(wikiformat) route and get back the national anthem url. It does it's best
 // todo: better filter: for countries with multiple anthems (Denmark), for no anthem displayed (Ireland)
-router.get('/anthem/:country', (req, res) => {
+// Optimised for robustness instead of performance. Remove checkRedirects for performance
+router.get('/:country/anthem', (req, res) => {
 const country = req.params.country
 fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=${country}&rvsection=0&rvparse`)
 .then(res => res.json())
 .then((data) => {
     anthem = anthemFormat(data)
-    console.log('anthem:', anthem)
-    return fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${anthem}&format=json`)
+    // console.log('anthem:', anthem)
+    checkRedirects(anthem).then((wikipediafied)=>{
+    return fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${wikipediafied}&format=json`)
     .then(res => res.json())
         .then((data) => {
         const mediaWithAudio = data.parse.images.filter((file)=>{
@@ -77,6 +144,7 @@ fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=con
     res.status(500);
     res.json({ status: 500, error: err });
     });
+})
 })
 })
 })
