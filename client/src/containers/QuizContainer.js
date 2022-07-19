@@ -4,7 +4,7 @@ import Quiz from "../components/Quiz";
 import ScoreBoard from "../components/ScoreBoard";
 import "../styles/Quiz.css"
 
-const QuizContainer = ({user, setUser, users, setUsers, score, setScore}) => {
+const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setScore}) => {
     const [countries, setCountries] = useState([]); //gets all the country objects
     const [country , setCountry] = useState({}); //sets the country selected for quiz
     const [question, setQuestion] = useState(""); // the question
@@ -12,7 +12,7 @@ const QuizContainer = ({user, setUser, users, setUsers, score, setScore}) => {
     const [answer, setAnswer] =useState(""); // the correct answer
     const [chosen, setChosen] = useState(""); // the radio button chosen by user
     const [playButton, setPlayButton] = useState("PLAY") // this button generates the quiz
-    const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
+    
     const [gameStatus, setGameStatus] = useState(0); // this defines the items display on the quiz component
 
     useEffect(() => {getCountries()},[])
