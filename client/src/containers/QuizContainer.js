@@ -5,7 +5,7 @@ import ScoreBoard from "../components/ScoreBoard";
 import UserQAHistory from "../components/UserQAHistory";
 import "../styles/Quiz.css"
 
-const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setScore}) => {
+const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setScore, session, setSession}) => {
     const [countries, setCountries] = useState([]); //gets all the country objects
     const [country , setCountry] = useState({}); //sets the country selected for quiz
     const [question, setQuestion] = useState(""); // the question
@@ -13,7 +13,6 @@ const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setS
     const [answer, setAnswer] =useState(""); // the correct answer
     const [chosen, setChosen] = useState(""); // the radio button chosen by user
     const [playButton, setPlayButton] = useState("PLAY") // this button generates the quiz
-    
     const [gameStatus, setGameStatus] = useState(0); // this defines the items display on the quiz component
 
     useEffect(() => {getCountries()},[])
@@ -42,8 +41,20 @@ const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setS
     // generates the quiz
     function getQuiz() {
         setGameStatus(1);
+        const randomSession = {userLoggedIn: true, userDenied: false, gameMode: "random"};
+        setSession(randomSession);
         generateQuestion();
         generateOptions();
+    }
+
+    function getHistoryQuiz() {
+        setGameStatus(1);
+        const historySession = {userLoggedIn: true, userDenied: false, gameMode: "history"};
+        setSession(historySession);
+        const index = getRandomIndex(0, user.QA_history.length - 1);
+        setQuestion(user.QA_history[index].question);
+        setAnswer(user.QA_history[index].answer)
+        setOptions(user.QA_history[index].options)
     }
 
     // generates the question, changes texts on the play button
@@ -78,6 +89,10 @@ const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setS
             if (answer === chosen) {
                 let winner = user;
                 winner.score += 10;
+                if (session.gameMode === "history") {
+                    const index = winner.QA_history.findIndex(qa => qa.answer === answer);
+                    winner.QA_history.splice(index, 1)
+                }
                 setUser(winner);
                 setScore(winner.score);
                 UserService.updateUsers(user);
@@ -125,6 +140,7 @@ const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setS
                 options={options}
                 submitChosen={submitChosen} 
                 setChosen={setChosen}
+                getHistoryQuiz={getHistoryQuiz}
             />
             <ScoreBoard users={users}/>
             <UserQAHistory />

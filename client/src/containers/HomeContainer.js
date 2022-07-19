@@ -8,7 +8,7 @@ function HomeContainer() {
   const [users, setUsers] = useState([]); // gets all the scores, users from our database
   const [user, setUser] = useState({});
   const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
-  const [session, setSession] = useState({userLoggedIn: false, userDenied: false})
+  const [session, setSession] = useState({userLoggedIn: false, userDenied: false, gameMode: "random"})
   const [score, setScore] = useState(0); // user score
 
   useEffect(() => {
@@ -42,6 +42,8 @@ function HomeContainer() {
         setQuizText={setQuizText}
         score={score}
         setScore={setScore}
+        session={session} 
+        setSession={setSession}
       />
       
     </>
