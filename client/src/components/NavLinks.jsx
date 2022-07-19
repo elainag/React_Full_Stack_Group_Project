@@ -5,19 +5,20 @@ import tailwind from '../tailwind.css'
 function NavLinks(props) {
   return (
     <div>
-      <h4>Nav Links</h4>
-      <div>
+      {/* <h4>Nav Links</h4> */}
+      {/* <div>
         Menu
-      </div>
+      </div> */}
       <ul>
         <li className='nav-links'>
-          <Link to="/" onClick={props.closeMenu}>Home2</Link>
+          <Link to="/" onClick={props.closeMenu}>Home</Link>
         </li>
         <li className='nav-links'>
           <Link to="/quiz" onClick={props.closeMenu}>Quiz</Link>
         </li>
       </ul>
     </div>
+
   )
 }
 

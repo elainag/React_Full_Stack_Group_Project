@@ -7,8 +7,8 @@ function Header() {
 
   return (
     <header>
-      <h5>Header</h5>
-      <Menu />
+      {/* <h5>Header</h5> */}
+      {/* <Menu /> */}
     </header>
 
   )
