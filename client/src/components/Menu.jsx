@@ -38,22 +38,20 @@ function Menu() {
       </span>
 
       {
-        maskTransitions.map(({ item, key, props }) =>
+        maskTransitions((styles, item) =>
           item &&
           <animated.div
-            key={key}
-            style={props}
+            style={styles}
             onClick={() => setShow(false)}
           >
           </animated.div>
         )
       }
       {
-        menuTransitions.map(({ item, key, props }) =>
+        menuTransitions((styles, item) =>
           item &&
           <animated.div
-            key={key}
-            style={props}
+            style={styles}
           >
             <NavLinks
               closeMenu={() => setShow(false)}
