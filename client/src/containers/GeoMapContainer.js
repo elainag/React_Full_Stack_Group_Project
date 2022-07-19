@@ -10,7 +10,6 @@ function GeoMapContainer() {
 
     return (
         <div className="GeoMap">
-            <h1>Map Demo</h1>
             <ReactTooltip>{content}</ReactTooltip>
             <div className="geography-div">
             <ComposableMap data-tip="">
@@ -39,7 +38,7 @@ function GeoMapContainer() {
                             outline: "none"
                         },
                         hover: {
-                            fill: "#ff33a7",
+                            fill: "#e07a5f",
                             outline: "none"
                         },
                         activated: {
