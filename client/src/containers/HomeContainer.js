@@ -34,7 +34,7 @@ function HomeContainer() {
         onSelectedUser={onSelectedUser} 
         session={session} 
         setSession={setSession}/>
-      {/* <GeoMapContainer/> */}
+      <GeoMapContainer/>
       <QuizContainer 
         user={user} 
         setUser={setUser} 
