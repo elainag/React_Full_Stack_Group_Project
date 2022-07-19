@@ -14,11 +14,13 @@ function App() {
         <Header />
         <Routes>
           <Route exact path="/HomeContainer">Home</Route>
-          <Route exact path="/GeoMapContainer"></Route>
+          <Route exact path="/GeoMapContainer">Geo</Route>
           <Route exact path="/QuizContainer">Quiz</Route>
         </Routes>
       </Router>
-      <HomeContainer />
+      <HomeContainer></HomeContainer>
+      <QuizContainer></QuizContainer>
+      <GeoMapContainer></GeoMapContainer>
       <Footer />
     </div>
   );
