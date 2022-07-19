@@ -1,0 +1,32 @@
+.quiz-box {
+    display: grid;
+    justify-items: center;
+    background-color: aqua;
+    margin: 20px;
+    padding: 20px;
+}
+
+.play-button, .quiz-input {
+    background-color: lightcoral;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.radio-div {
+    display: grid;
+    justify-items: flex-start;
+    margin: 20px 10px;
+}
+.radio-span {
+    margin-bottom: 5px;
+}
+
+.radio {
+    border: 1px solid red;
+}
+
+.radio-label {
+    margin-left: 10px;
+}

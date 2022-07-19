@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 
-
 const cors = require("cors");
 app.use(cors())
 app.use(express.json());
@@ -16,13 +15,16 @@ MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
     const db = client.db('react_app');
 
     const TeleportCollection = db.collection('countries');
-    const scoresCollection = db.collection('scores');
+    const usersCollection = db.collection('users');
     const countriesRouter = createRouter(TeleportCollection);
 
-    const scoresRouter = createRouter(scoresCollection);
+    const usersRouter = createRouter(usersCollection);
     app.use('/api/countries', countriesRouter);
+
     app.use('/api/scores', scoresRouter);
+    app.use('/api/users', usersRouter);
     app.use('/api/wiki', wikipediaRouter)
+
   })
   .catch(console.err);
 

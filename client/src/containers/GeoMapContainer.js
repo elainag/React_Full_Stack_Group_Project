@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import ReactTooltip from 'react-tooltip';
-import "./GeoMap.css"
+import "../styles/GeoMapContainer.css"
 
-function GeoMap() {
+function GeoMapContainer() {
     const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
     const [content, setContent] = useState("")
     const [selectedCountry, setSelectedCountry] = useState("")
@@ -57,4 +57,4 @@ function GeoMap() {
     )
 }
 
-export default GeoMap;
+export default GeoMapContainer;
