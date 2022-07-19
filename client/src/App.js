@@ -1,11 +1,28 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import './App.css';
 import HomeContainer from './containers/HomeContainer';
-
+import GeoMapContainer from './containers/GeoMapContainer';
+import QuizContainer from './containers/QuizContainer';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Menu from './components/Menu';
 
 function App() {
   return (
     <div className="App">
-      <HomeContainer/>
+      <Router>
+        <Menu />
+        <Routes>
+          <Route exact path="/HomeContainer" component={HomeContainer}>Home</Route>
+          <Route exact path="/GeoMapContainer" component={GeoMapContainer}>Geo</Route>
+          <Route exact path="/QuizContainer" component={QuizContainer}>Quiz</Route>
+        </Routes>
+      </Router>
+      <HomeContainer className="home-container"></HomeContainer>
+      {/* <QuizContainer></QuizContainer>
+      <GeoMapContainer></GeoMapContainer> */}
+      <Footer />
     </div>
   );
 }
