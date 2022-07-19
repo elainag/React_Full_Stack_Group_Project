@@ -5,7 +5,7 @@ import React from "react";
 const CountryData = () => {
 
   return (
-    <h1>Country Details</h1>
+    <h1>Country Data</h1>
   )
 
 }

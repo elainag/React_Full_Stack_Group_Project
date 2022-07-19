@@ -3,6 +3,7 @@ import GeoMapContainer from "./GeoMapContainer";
 import QuizContainer from "./QuizContainer";
 import UserService from "../services/UserService";
 import User from "../components/User";
+import SearchContainer from "./SearchContainer";
 
 function HomeContainer() {
   const [users, setUsers] = useState([]); // gets all the scores, users from our database
@@ -27,8 +28,8 @@ function HomeContainer() {
   return (
     <>
       <h1>HomeContainer</h1>
-      <User 
-        users={users} 
+      <User
+        users={users}
         setUser={setUser}
         setQuizText={setQuizText}
         onSelectedUser={onSelectedUser} 
@@ -47,7 +48,7 @@ function HomeContainer() {
         session={session} 
         setSession={setSession}
       />
-      
+      <SearchContainer />
     </>
   )
 }

@@ -4,8 +4,7 @@
   grid-template-columns: minmax(150px, 75%);
   justify-items: center;
 }
-
-/* .App-logo {
+.App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,7 +34,9 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
-} */
+}
+
