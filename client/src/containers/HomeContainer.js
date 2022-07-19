@@ -13,7 +13,7 @@ function HomeContainer() {
 
   useEffect(() => {
     UserService.getUsers()
-    .then(users => setUsers(users));
+      .then(users => setUsers(users));
   }, []);
 
   function onSelectedUser(userID) {
