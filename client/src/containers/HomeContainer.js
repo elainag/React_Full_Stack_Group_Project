@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-// import GeoMapContainer from "./GeoMapContainer";
+import GeoMapContainer from "./GeoMapContainer";
 import QuizContainer from "./QuizContainer";
 import UserService from "../services/UserService";
 import User from "../components/User";
 
 function HomeContainer() {
   const [users, setUsers] = useState([]); // gets all the scores, users from our database
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({}); // defines the logged in user
   const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
   const [session, setSession] = useState({userLoggedIn: false, userDenied: false, gameMode: "random"})
+  //  All session properties defines which components will display
+  //  and how those components behave
   const [score, setScore] = useState(0); // user score
 
   useEffect(() => {

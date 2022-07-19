@@ -38,7 +38,7 @@ const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setS
         setCountry(countries[index])
     }
 
-    // generates the quiz
+    // generates the random quiz
     function getQuiz() {
         setGameStatus(1);
         const randomSession = {userLoggedIn: true, userDenied: false, gameMode: "random"};
@@ -47,6 +47,7 @@ const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setS
         generateOptions();
     }
 
+    // generates quiz from user QA history
     function getHistoryQuiz() {
         setGameStatus(1);
         const historySession = {userLoggedIn: true, userDenied: false, gameMode: "history"};
@@ -83,6 +84,7 @@ const QuizContainer = ({user, setUser, users, quizText, setQuizText, score, setS
     // in win case adds points to the score
     // in lost case adds QA to the user QA_history
     // clears the quiz component
+    // if gameMode is history deletes the QA from user history in case of win
     function submitChosen() {
         let points = 0;
         if (answer !== "") {
