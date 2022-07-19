@@ -10,9 +10,16 @@ function Menu() {
   const [show, setShow] = useState(false)
 
 
+  const Transition = useTransition(show, {
+    from: { opacity: 0, transform: 'translateX(-100%)' },
+    enter: { opacity: 1, transform: 'translateX(0%)' },
+    leave: { opacity: 0, transform: 'translateX(-100%)' },
+  })
+
+
   return (
     <nav>
-      <span className='text-xl'>
+      <span className='menu-text'>
         <FontAwesomeIcon
           icon={faBars}
           onClick={() => setShow(!show)} />
