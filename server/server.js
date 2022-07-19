@@ -20,8 +20,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
 
     const usersRouter = createRouter(usersCollection);
     app.use('/api/countries', countriesRouter);
-
-    app.use('/api/scores', scoresRouter);
     app.use('/api/users', usersRouter);
     app.use('/api/wiki', wikipediaRouter)
 
