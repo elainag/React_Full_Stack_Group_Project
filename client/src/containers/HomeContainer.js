@@ -1,27 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import GeoMapContainer from "./GeoMapContainer";
 import QuizContainer from "./QuizContainer";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import UserService from "../services/UserService";
+import User from "../components/User";
 
 function HomeContainer() {
+  const [users, setUsers] = useState([]); // gets all the scores, users from our database
+  const [user, setUser] = useState({});
+  const [score, setScore] = useState(0); // user score
+
+  useEffect(() => {
+    UserService.getUsers()
+      .then(users => setUsers(users));
+  }, []);
+
+  function onSelectedUser(userID) {
+    const selectedUser = users.find(user => user._id === userID);
+    setUser(selectedUser);
+    setScore(selectedUser.score);
+  }
 
   return (
-    <div>
-      <Router>
-
-        <h1>HomeContainer</h1>
-        <Header />
-        <Routes>
-          {/* <Route exact path="/HomeContainer"><Home /></Route> */}
-        </Routes>
-
-      </Router>
+    <>
+      <h1>HomeContainer</h1>
+      <User users={users} onSelectedUser={onSelectedUser} />
       <GeoMapContainer />
-      <QuizContainer />
-      <Footer />
-    </div>
+      <QuizContainer
+        user={user}
+        setUser={setUser}
+        users={users}
+        setUsers={setUsers}
+        score={score}
+        setScore={setScore}
+      />
+    </>
   )
 }
 
