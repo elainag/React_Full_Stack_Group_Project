@@ -6,49 +6,56 @@ import User from "../components/User";
 import SearchContainer from "./SearchContainer";
 
 function HomeContainer() {
-  const [users, setUsers] = useState([]); // gets all the scores, users from our database
-  const [user, setUser] = useState({}); // defines the logged in user
-  const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
-  const [session, setSession] = useState({userLoggedIn: false, userDenied: false, gameMode: "random"})
-  //  All session properties defines which components will display
-  //  and how those components behave
-  const [score, setScore] = useState(0); // user score
 
-  useEffect(() => {
-    UserService.getUsers()
-      .then(users => setUsers(users));
-  }, []);
+  // const [users, setUsers] = useState([]); // gets all the scores, users from our database
+  // const [user, setUser] = useState({});
+  // const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
+  // const [session, setSession] = useState({ userLoggedIn: false, userDenied: false })
+  // const [score, setScore] = useState(0); // user score
+  const [search, setSearch] = useState("") // user input on search form
 
-  function onSelectedUser(userID) {
-    const selectedUser = users.find(user => user._id === userID);
-    setUser(selectedUser);
-    setScore(selectedUser.score);
+
+  // useEffect(() => {
+  //   UserService.getUsers()
+  //     .then(users => setUsers(users));
+  // }, []);
+
+  // function onSelectedUser(userID) {
+  //   const selectedUser = users.find(user => user._id === userID);
+  //   setUser(selectedUser);
+  //   setScore(selectedUser.score);
+  // }
+
+  function onSearchedCountry(country) {
+    setSearch(country)
   }
 
   return (
     <>
       <h1>HomeContainer</h1>
-      <User
+      <SearchContainer />
+      {/* <User
         users={users}
         setUser={setUser}
         setQuizText={setQuizText}
-        onSelectedUser={onSelectedUser} 
-        session={session} 
-        setSession={setSession}/>
-      <GeoMapContainer/>
-      <QuizContainer 
-        user={user} 
-        setUser={setUser} 
-        users={users} 
+
+        onSelectedUser={onSelectedUser}
+        session={session}
+        setSession={setSession} /> */}
+      {/* <QuizContainer
+        user={user}
+        setUser={setUser}
+        users={users}
+
         setUsers={setUsers}
         quizText={quizText}
         setQuizText={setQuizText}
         score={score}
         setScore={setScore}
-        session={session} 
-        setSession={setSession}
-      />
-      <SearchContainer />
+
+      /> */}
+      <GeoMapContainer />
+
     </>
   )
 }
