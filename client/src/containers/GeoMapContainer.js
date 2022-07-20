@@ -3,7 +3,9 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simp
 import ReactTooltip from 'react-tooltip';
 import "../styles/GeoMapContainer.css"
 import Country from "../components/Country";
-import {wikifyCountry, findAnthem, findLanguages, findLanguageSample} from "../services/WikipediaService";
+import {wikifyCountry, findAnthem, findCountrySummary, findLanguages, findLanguageSample} from "../services/WikipediaService";
+
+
 
 function GeoMapContainer() {
     const [isLoaded, setIsLoaded] = useState(false)
@@ -13,9 +15,11 @@ function GeoMapContainer() {
 
     const [wikifiedCountry, setWikifiedCountry] = useState("")
     const [anthem, setAnthem] = useState("");
+    const [summary, setSummary] = useState("")
     const [languages, setLanguages] = useState([])
     const [langueSample, setLanguageSample] = useState(null)
 
+    const [showContainer, setShowContainer] = useState(false)
     useEffect(()=>{
         if(!isLoaded){
             return
@@ -31,8 +35,11 @@ function GeoMapContainer() {
         if(!isLoaded){
             return
         }
-        findAnthem(wikifiedCountry).then((anthem)=>{
-        setAnthem(anthem);
+        findAnthem(wikifiedCountry).then((anthemFound)=>{
+        setAnthem(anthemFound);
+        })
+        findCountrySummary(wikifiedCountry).then((summaryFound)=>{
+            setSummary(summaryFound);
         })
     }, [wikifiedCountry]);
 
@@ -58,6 +65,7 @@ function GeoMapContainer() {
                         onClick={() => {
                             const NAME  = geo.properties.name;
                             setSelectedCountry(`${NAME}`);
+                            setShowContainer(true);
                         }}
                         onMouseLeave={() => {
                             setContent("");
@@ -81,7 +89,8 @@ function GeoMapContainer() {
                 </ZoomableGroup>
             </ComposableMap>
             </div>
-            <Country country={selectedCountry} anthem={anthem}/>
+            { showContainer ? <Country country={selectedCountry} anthem={anthem} summary={summary} setShowContainer={setShowContainer}/>: null }
+
         </div>
     )
 }

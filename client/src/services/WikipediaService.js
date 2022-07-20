@@ -19,3 +19,8 @@ export const findLanguageSample = (language) => {
     return fetch(baseURL + 'language' + language)
         .then(res => res.json())
 }
+
+export const findCountrySummary = (country) => {
+    return fetch(baseURL + country + '/summary')
+        .then(res => res.json())
+}

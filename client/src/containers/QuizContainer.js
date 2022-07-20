@@ -183,7 +183,7 @@ const QuizContainer = () => {
 
 
             <ScoreBoard users={users}/>
-            <UserQAHistory />
+            {/* <UserQAHistory /> */}
 
         </div>
     )
