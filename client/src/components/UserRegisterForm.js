@@ -1,19 +1,24 @@
 import React, { useState } from "react"
 import "../styles/User.css"
 
-const UserRegisterForm = ({ addUser }) => {
+const UserRegisterForm = ({ addNewUser }) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
 
     const handleUserNameChange = (ev) => setUsername(ev.target.value);
     const handleEmailChange = (ev) => setEmail(ev.target.value);
 
-    const handleSubmit = ev => {
+    const handleSubmit = (ev) => {
         ev.preventDefault();
-        addUser({
+        const newUser = {
           username: username,
           email: email,
-        });
+          score: 0,
+          rank: 0,
+          QA_History: []
+        }
+        // addNewUser(newUser);
+        // console.log(addNewUser)
         setUsername("");
         setEmail("");
     }

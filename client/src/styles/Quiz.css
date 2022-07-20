@@ -9,6 +9,10 @@
     padding: 1em;
 }
 
+.question, .options {
+    margin: 1em;
+}
+
 .play-button, .play-history-button {
     border: none;
     height: 3em;
@@ -39,6 +43,7 @@
 
 .radio-div {
     display: grid;
+    margin: 1em;
 }
 
 .radio-span {
@@ -54,4 +59,5 @@
     padding: .7em;
     width: 7em;
     margin-top: .5em;
+    background-color: var(--color5);
 }

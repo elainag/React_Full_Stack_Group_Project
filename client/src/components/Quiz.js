@@ -16,9 +16,10 @@ const Quiz = ({ quizText, score, getQuiz, playButton, question, gameStatus, opti
                 <button className="play-history-button" onClick={getHistoryQuiz}>Play From Your Quiz History</button>
             </div>
             <div className="quiz-div">
-                <h3>{question}</h3>
+                <h3 className="question">{question}</h3>
                 <hr></hr>
                 {gameStatus === 1 ? <QuizOptions
+                    className="options"
                     options={options}
                     submitChosen={submitChosen}
                     setChosen={setChosen} /> : null}

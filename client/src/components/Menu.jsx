@@ -28,6 +28,7 @@ function Menu() {
     <nav className='navbar'>
       <span className='text-bold'>
         <FontAwesomeIcon
+          size="xl"
           icon={faBars}
           onClick={() => setShow(!show)} />
       </span>
