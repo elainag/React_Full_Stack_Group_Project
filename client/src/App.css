@@ -14,12 +14,10 @@
 
 .App {
   font-family: 'Nunito', sans-serif;
-  display: grid;
-  justify-items: center;
   padding: 0;
   margin: 0;
 }
-/* .App-logo {
+.App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -54,4 +52,4 @@
     transform: rotate(360deg);
   }
 }
- */
+
