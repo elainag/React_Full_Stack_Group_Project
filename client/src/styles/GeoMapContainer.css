@@ -9,7 +9,6 @@
 
 .geography-div {
   width: 100%;
-  background-color: #e0fbfc;
   margin: 20px;
   min-width: 300px;
   max-width: 800px;
@@ -20,9 +19,13 @@
   stroke-width: 1px;
 }
 
-.geography:nth-child(1n) { fill: #2f3e46; }
-.geography:nth-child(2n) { fill: #a98467; }
-.geography:nth-child(3n) { fill: #52796f; }
-.geography:nth-child(4n) { fill: #6c584c; }
-.geography:nth-child(5n) { fill: #84a98c; }
-.geography:nth-child(5n) { fill: #354f52; }
+.geography:nth-child(1n) { fill: var(--color1); }
+.geography:nth-child(2n) { fill: var(--color2); }
+.geography:nth-child(3n) { fill: var(--color3); }
+.geography:nth-child(4n) { fill: var(--color4); }
+.geography:nth-child(5n) { fill: var(--color5); }
+.geography:nth-child(6n) { fill: var(--color6); }
+.geography:nth-child(7n) { fill: var(--color7); }
+.geography:nth-child(8n) { fill: var(--color8); }
+.geography:nth-child(9n) { fill: var(--color9); }
+.geography:nth-child(10n) { fill: var(--color10); }
