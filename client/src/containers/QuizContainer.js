@@ -124,7 +124,7 @@ const QuizContainer = () => {
                     setScore(winner.score);
                     UserService.updateUsers(user);
                     setQuizText("Correct Answer!");
-                    setPlayButton("Play Again");
+                    setPlayButton("Play --Again");
                 } else {
                     let loser = user;
                     let QA = {
