@@ -6,12 +6,14 @@ import User from "../components/User";
 import SearchContainer from "./SearchContainer";
 
 function HomeContainer() {
+
   // const [users, setUsers] = useState([]); // gets all the scores, users from our database
   // const [user, setUser] = useState({});
   // const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
   // const [session, setSession] = useState({ userLoggedIn: false, userDenied: false })
   // const [score, setScore] = useState(0); // user score
   const [search, setSearch] = useState("") // user input on search form
+
 
   // useEffect(() => {
   //   UserService.getUsers()
@@ -36,6 +38,7 @@ function HomeContainer() {
         users={users}
         setUser={setUser}
         setQuizText={setQuizText}
+
         onSelectedUser={onSelectedUser}
         session={session}
         setSession={setSession} /> */}
@@ -43,13 +46,16 @@ function HomeContainer() {
         user={user}
         setUser={setUser}
         users={users}
+
         setUsers={setUsers}
         quizText={quizText}
         setQuizText={setQuizText}
         score={score}
         setScore={setScore}
+
       /> */}
       <GeoMapContainer />
+
     </>
   )
 }

@@ -1,3 +1,9 @@
+.App {
+  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(150px, 75%);
+  justify-items: center;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -33,3 +39,4 @@
     transform: rotate(360deg);
   }
 }
+

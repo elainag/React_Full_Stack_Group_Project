@@ -24,14 +24,16 @@ db.users.insertMany([
     "rank": 0,
     "QA_history": [
       {
-        "category": "geography",
-        "question": "What is the capital of Chad ?",
-        "answer": "N'djamena"
+        "category": "capital",
+        "question": "What is the capital city of Niger?",
+        "answer": "Niamey",
+        "options": ["Mata-Utu", "Niamey", "Dushanbe", "Amman"]
       },
       {
-        "category": "language",
-        "question": "The word rodent comes from the italian 'rodere', which means?",
-        "answer": "Gnaw"
+        "category": "capital",
+        "question": "What is the capital city of Maldives?",
+        "answer": "Malé",
+        "options": ["Malé", "Manama", "Bern", "Sofia"]
       }
     ]
   },
@@ -42,14 +44,17 @@ db.users.insertMany([
     "rank": 0,
     "QA_history": [
       {
-        "category": "mathematics",
-        "question": "What is x to the power of zero equal to?",
-        "answer": "One"
+        "category": "capital",
+        "question": "What is the capital city of Canada?",
+        "answer": "Ottawa",
+        "options": ["Ottawa", "Phnom Penh", "Seoul", "Khartoum"]
       },
       {
-        "category": "mathematics",
-        "question": "How many corners are there in a cube",
-        "answer": "Eight"
+        "category": "capital",
+        "question": "What is the capital city of Lesotho?",
+        "answer": "Maseru",
+        "options": 
+        ["Phnom Penh", "Maseru", "San José", "Saint Helier"]        
       }
     ]
   }

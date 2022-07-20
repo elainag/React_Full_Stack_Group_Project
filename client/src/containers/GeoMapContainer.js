@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import ReactTooltip from 'react-tooltip';
 import "../styles/GeoMapContainer.css"
+import Country from "../components/Country";
+import {wikifyCountry, findAnthem, findLanguages, findLanguageSample} from "../services/WikipediaService";
 
 function GeoMapContainer() {
     const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
     const [content, setContent] = useState("")
     const [selectedCountry, setSelectedCountry] = useState("")
 
+    const [wikifiedCountry, setWikifiedCountry] = useState(null)
+    const [anthem, setAnthem] = useState(null);
+    const [languages, setLanguages] = useState([])
+    const [langueSample, setLanguageSample] = useState(null)
+
+    useEffect(()=>{
+        wikifyCountry(selectedCountry).then((wikified)=>{
+        setWikifiedCountry(wikified);
+        })
+      }, []);
+
     return (
         <div className="GeoMap">
-            <h1>Map Demo</h1>
             <ReactTooltip>{content}</ReactTooltip>
             <div className="geography-div">
             <ComposableMap data-tip="">
@@ -28,7 +40,7 @@ function GeoMapContainer() {
                             setContent(`${NAME}`);
                         }}
                         onClick={() => {
-                            const NAME  = geo.id;
+                            const NAME  = geo.properties.name;
                             setSelectedCountry(`${NAME}`);
                         }}
                         onMouseLeave={() => {
@@ -39,7 +51,7 @@ function GeoMapContainer() {
                             outline: "none"
                         },
                         hover: {
-                            fill: "#ff33a7",
+                            fill: "#e07a5f",
                             outline: "none"
                         },
                         activated: {
@@ -53,6 +65,7 @@ function GeoMapContainer() {
                 </ZoomableGroup>
             </ComposableMap>
             </div>
+            <Country country={selectedCountry}/>
         </div>
     )
 }

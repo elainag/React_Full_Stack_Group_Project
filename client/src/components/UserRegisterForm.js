@@ -19,7 +19,7 @@ const UserRegisterForm = ({ addUser }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="register-form" onSubmit={handleSubmit}>
           <h1>Register with email</h1>
           <div className="group">
             <label htmlFor="username">Select your username</label>

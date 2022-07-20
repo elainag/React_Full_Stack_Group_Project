@@ -1,17 +1,20 @@
 .quiz-box {
     display: grid;
     justify-items: center;
-    background-color: aqua;
+    grid-template-columns: minmax(400px, 75%);
+    min-width: 400px;
+    background-color: #edede9;
     margin: 20px;
     padding: 20px;
 }
 
 .play-button, .quiz-input {
-    background-color: lightcoral;
+    background-color: #d5bdaf;
     border: none;
     padding: 10px 20px;
     font-weight: bold;
     color: white;
+    margin: 5px;
 }
 
 .radio-div {

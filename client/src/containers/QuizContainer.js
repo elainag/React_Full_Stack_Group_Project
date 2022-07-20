@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
 import Quiz from "../components/Quiz";
 import ScoreBoard from "../components/ScoreBoard";
+
 import User from '../components/User'
 import "../styles/Quiz.css"
 
 const QuizContainer = () => {
+
     const [countries, setCountries] = useState([]); //gets all the country objects
     const [country, setCountry] = useState({}); //sets the country selected for quiz
     const [question, setQuestion] = useState(""); // the question
@@ -13,11 +15,13 @@ const QuizContainer = () => {
     const [answer, setAnswer] = useState(""); // the correct answer
     const [chosen, setChosen] = useState(""); // the radio button chosen by user
     const [playButton, setPlayButton] = useState("PLAY") // this button generates the quiz
+
     const [session, setSession] = useState({ userLoggedIn: false, userDenied: false })
     const [users, setUsers] = useState([]); // gets all the scores, users from our database
     const [user, setUser] = useState({});
     const [score, setScore] = useState(0); // user score
     const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
+
 
 
 
@@ -52,11 +56,24 @@ const QuizContainer = () => {
         setCountry(countries[index])
     }
 
-    // generates the quiz
+    // generates the random quiz
     function getQuiz() {
         setGameStatus(1);
+        const randomSession = {userLoggedIn: true, userDenied: false, gameMode: "random"};
+        setSession(randomSession);
         generateQuestion();
         generateOptions();
+    }
+
+    // generates quiz from user QA history
+    function getHistoryQuiz() {
+        setGameStatus(1);
+        const historySession = {userLoggedIn: true, userDenied: false, gameMode: "history"};
+        setSession(historySession);
+        const index = getRandomIndex(0, user.QA_history.length - 1);
+        setQuestion(user.QA_history[index].question);
+        setAnswer(user.QA_history[index].answer)
+        setOptions(user.QA_history[index].options)
     }
 
     // generates the question, changes texts on the play button
@@ -74,8 +91,10 @@ const QuizContainer = () => {
         const option2 = countries[getRandomIndex(0, countries.length - 1)].capital[0];
         const option3 = countries[getRandomIndex(0, countries.length - 1)].capital[0];
         const index = getRandomIndex(0, 3);
-        console.log(index);
-        let generatedOptions = [option1, option2, option3];
+
+
+        let generatedOptions = [ option1, option2, option3];
+
         generatedOptions.splice(index, 0, country.capital[0]);
         setOptions(generatedOptions);
         setAnswer(country.capital[0]);
@@ -86,12 +105,17 @@ const QuizContainer = () => {
     // in win case adds points to the score
     // in lost case adds QA to the user QA_history
     // clears the quiz component
+    // if gameMode is history deletes the QA from user history in case of win
     function submitChosen() {
         let points = 0;
         if (answer !== "") {
             if (answer === chosen) {
                 let winner = user;
                 winner.score += 10;
+                if (session.gameMode === "history") {
+                    const index = winner.QA_history.findIndex(qa => qa.answer === answer);
+                    winner.QA_history.splice(index, 1)
+                }
                 setUser(winner);
                 setScore(winner.score);
                 UserService.updateUsers(user);
@@ -154,8 +178,13 @@ const QuizContainer = () => {
                 options={options}
                 submitChosen={submitChosen}
                 setChosen={setChosen}
+                getHistoryQuiz={getHistoryQuiz}
             />
-            <ScoreBoard users={users} />
+
+
+            <ScoreBoard users={users}/>
+            <UserQAHistory />
+
         </div>
     )
 }

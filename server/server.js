@@ -17,7 +17,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
     const TeleportCollection = db.collection('countries');
     const usersCollection = db.collection('users');
     const countriesRouter = createRouter(TeleportCollection);
-
     const usersRouter = createRouter(usersCollection);
     app.use('/api/countries', countriesRouter);
 
