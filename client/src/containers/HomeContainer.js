@@ -10,6 +10,7 @@ import SearchContainer from "./SearchContainer";
 import CountriesService from "../services/CountriesService";
 
 function HomeContainer() {
+
   const [users, setUsers] = useState([]); // gets all the scores, users from our database
   const [user, setUser] = useState({}); // defines the logged in user
   const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
@@ -27,6 +28,7 @@ function HomeContainer() {
     const selectedUser = users.find(user => user._id === userID);
     setUser(selectedUser);
     setScore(selectedUser.score);
+
   }
 
 
@@ -64,27 +66,34 @@ function HomeContainer() {
   return (
     <>
       <h1>HomeContainer</h1>
-      <User
+      <SearchContainer />
+      {/* <User
         users={users}
         setUser={setUser}
         setQuizText={setQuizText}
+
         onSelectedUser={onSelectedUser}
         session={session}
         setSession={setSession} />
-      <GeoMapContainer />
-      <QuizContainer
+  
+    
+        setSession={setSession} /> */}
+      {/* <QuizContainer
         user={user}
         setUser={setUser}
         users={users}
+
+
         setUsers={setUsers}
         quizText={quizText}
         setQuizText={setQuizText}
         score={score}
         setScore={setScore}
-        session={session}
-        setSession={setSession}
-      />
-      {/* <SearchContainer /> */}
+
+      /> */}
+      <GeoMapContainer />
+
+
     </>
   )
 }

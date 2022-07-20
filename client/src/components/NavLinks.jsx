@@ -16,6 +16,9 @@ function NavLinks(props) {
         <li className='nav-links'>
           <Link to="/quiz" onClick={props.closeMenu}>Quiz</Link>
         </li>
+        {/* <li className='nav-links'>
+          <Link to="/search" onClick={props.closeMenu}>Search</Link>
+        </li> */}
       </ul>
     </div>
 
