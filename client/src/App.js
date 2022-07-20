@@ -11,10 +11,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './components/Menu';
 
-const PrivateRoute = () => {
-  const auth = null;
-  return auth ? <Outlet /> : <Navigate to="/HomeContainer" />;
-}
+
+import PopulateCountries from './services/PopulateCountries';
+import PopulateCities from './services/PopulateCities';
 
 
 function App() {
@@ -28,6 +27,13 @@ function App() {
           <Route exact path='/quiz' element={<QuizContainer />} />
         </Routes>
       </Router>
+
+      <HomeContainer className="home-container"></HomeContainer>
+      {/* <QuizContainer></QuizContainer>
+      <GeoMapContainer></GeoMapContainer> */}
+        {/* <PopulateCountries /> */}
+      <PopulateCities />
+
       <Footer />
     </div>
   );

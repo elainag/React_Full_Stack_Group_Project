@@ -4,12 +4,12 @@ import CountriesService from './CountriesService';
 const PopulateCountries = () => {
 
     const [countries, setCountries] = useState([]);
-    const [cities, setCities] = useState([]);
+
 
     const getCountries = async () => {
-        const key = null;
-        const cName = "";
-        const cHref = "";
+        // const key = null;
+        const cName = ' ';
+        // const cHref = ' ';
         const countryRes = await fetch("https://api.teleport.org/api/countries/")
         const countryData = await countryRes.json()
         setCountries(countryData['_links']['country:items'])
@@ -17,9 +17,11 @@ const PopulateCountries = () => {
         for (let i = 0; i < countries.length; i++) {
             const country = {
                 cName: countries[i].name,
-                cHref: countries[i].href
+                cHref: countries[i].href,
+                cCode: countries[i].href.slice(50, 52)
 
             }
+            //
             console.log(cName)
             CountriesService.postCountry(country);
         }
