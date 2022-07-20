@@ -5,7 +5,6 @@
 
 .score-text {
     text-align: center;
-    background-color: var(--container);
     padding: 1em;
 }
 
@@ -26,10 +25,15 @@
     background-color: var(--color3) ;
 }
 
-.quiz-div {
+.quiz-div, .play-div, .score-text {
     padding: 1.5em;
     margin: 1em;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.play-div {
+    display: flex;
+    justify-content: center;
 }
 
 .radio-div {
