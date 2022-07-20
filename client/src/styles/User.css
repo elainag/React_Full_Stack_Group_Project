@@ -16,16 +16,31 @@
     font-size: 1em;
 }
 
-.login-button {
+.log-button {
     border: none;
     background-color: var(--color5);
-    color: var(--color1);
     padding: .8em;
     margin: .2em;
 }
 
-.quiz-text {
-    color: var(--color1);
-    padding: .7em;
-    margin: .5em;
+.register-form {
+    border: solid .5px black;
+    padding: .5em;
+}
+
+.group {
+    display: flex;
+    align-items: center;
+    margin-bottom: .7em;
+}
+
+.form-label {
+    display: block;
+    width: 13rem;
+}
+
+.input {
+    height: 2em;
+    width: 18em;
+    border: solid .5px black;
 }

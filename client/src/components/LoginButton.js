@@ -9,7 +9,7 @@ const LoginButton = ({ setSession, setUser, setQuizText}) => {
         setQuizText("Welcome Back")
     }
     
-    return <button className="logout-button" onClick={handleClick}>Logout</button>
+    return <button className="log-button" onClick={handleClick}>Logout</button>
 }
 
 export default LoginButton;

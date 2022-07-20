@@ -34,8 +34,8 @@ const UserLoginForm = ({ users, setQuizText, onSelectedUser, setSession }) => {
     return (
         <form className="login-form" onSubmit={handleSubmit}>
                 <label className="login-label">Log in with Email   </label>
-                <input className="login-email-input" type="email" id="email" name="email" value={userEmail} required onChange={handleEmailChange} />
-                <input className="login-button" type="submit" value="Log in" />
+                <input className="input" type="email" id="email" name="email" value={userEmail} required onChange={handleEmailChange} />
+                <input className="log-button" type="submit" value="Log in" />
         </form>
     )
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/Quiz.css"
 
 // receives generated options array
 // setChosen function to update the chosen answer

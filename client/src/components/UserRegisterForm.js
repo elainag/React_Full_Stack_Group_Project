@@ -20,10 +20,11 @@ const UserRegisterForm = ({ addUser }) => {
 
     return (
         <form className="register-form" onSubmit={handleSubmit}>
-          <h1>Register with email</h1>
+          <h3>Register with email</h3>
           <div className="group">
-            <label htmlFor="username">Select your username</label>
+            <label className="form-label" htmlFor="username">Select your username</label>
             <input 
+              className="input"
               type="text" 
               id="username" 
               name="username" 
@@ -33,8 +34,9 @@ const UserRegisterForm = ({ addUser }) => {
             />
           </div>
           <div className="group">
-            <label htmlFor="email">Enter your email</label>
+            <label className="form-label" htmlFor="email">Enter your email</label>
             <input 
+              className="input"
               type="email" 
               id="email" 
               name="email" 
@@ -44,7 +46,7 @@ const UserRegisterForm = ({ addUser }) => {
             />
           </div>
     
-          <input type="submit" name="submit" value="Register" />
+          <input className="log-button" type="submit" name="submit" value="Register" />
         </form>
     )
 }

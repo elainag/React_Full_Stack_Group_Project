@@ -1,37 +1,52 @@
-
-  /* color: var(--color3); */
-
-.quiz-box {
-    display: grid;
-    justify-items: center;
-    grid-template-columns: minmax(400px, 75%);
-    min-width: 400px;
-    margin: 20px;
-    padding: 20px;
+.quiz-text {
+    padding: .7em;
+    margin: .5em;
 }
 
-.play-button, .quiz-input {
-    background-color: var(--color3);
+.score-text {
+    text-align: center;
+    background-color: var(--container);
+    padding: 1em;
+}
+
+.play-button, .play-history-button {
     border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    color: white;
-    margin: 5px;
+    height: 3em;
+    padding: 1em;
+    margin: 1em;
+    font-size: .8em;
+    font-family: 'Nunito', sans-serif;
+}
+
+.play-button {
+    background-color: var(--color6);
+}
+
+.play-history-button {
+    background-color: var(--color3) ;
+}
+
+.quiz-div {
+    border: .5px solid black;
+    padding: 1.5em;
+    margin: 1em;
 }
 
 .radio-div {
     display: grid;
-    justify-items: flex-start;
-    margin: 20px 10px;
 }
+
 .radio-span {
-    margin-bottom: 5px;
+    margin-bottom: .5em;
 }
 
 .radio {
-    border: 1px solid red;
+    margin-right: 2em;
 }
 
-.radio-label {
-    margin-left: 10px;
+.quiz-input {
+    border: none;
+    padding: .7em;
+    width: 7em;
+    margin-top: .5em;
 }
