@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/ScoreBoard.css"
 
 const ScoreBoard = ({ users }) => {
     if (!users) {

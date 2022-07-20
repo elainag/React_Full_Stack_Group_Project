@@ -27,9 +27,9 @@
 }
 
 .quiz-div {
-    border: .5px solid black;
     padding: 1.5em;
     margin: 1em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .radio-div {
