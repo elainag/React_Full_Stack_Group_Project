@@ -5,6 +5,7 @@ import UserService from "../services/UserService";
 import User from "../components/User";
 import SearchContainer from "./SearchContainer";
 
+
 function HomeContainer() {
 
   // const [users, setUsers] = useState([]); // gets all the scores, users from our database
@@ -32,7 +33,7 @@ function HomeContainer() {
 
   return (
     <>
-      <h1>Welcome to Our World</h1>
+      <h1 className="heading-text">Welcome to Our World</h1>
       <SearchContainer />
       {/* <User
         users={users}

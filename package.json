@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "react-simple-maps": "^2.3.0"
+    "react-simple-maps": "^2.3.0",
+    "styled-components": "^5.3.5"
   }
 }

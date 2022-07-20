@@ -2,6 +2,13 @@
   text-align: left;
 }
 
+.heading-text {
+  text-align: center;
+  size: 50rem;
+  padding: .7em;
+  margin: .5em;
+}
+
 .home-container {
   text-align: center;
 }
