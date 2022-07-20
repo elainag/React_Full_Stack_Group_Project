@@ -14,9 +14,18 @@
 
 .App {
   font-family: 'Nunito', sans-serif;
+  display: grid;
+  justify-items: center;
   padding: 0;
   margin: 0;
 }
+
+.navbar {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

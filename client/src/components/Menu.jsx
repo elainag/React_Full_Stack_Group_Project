@@ -25,7 +25,7 @@ function Menu() {
   })
 
   return (
-    <nav>
+    <nav className='navbar'>
       <span className='text-bold'>
         <FontAwesomeIcon
           icon={faBars}
