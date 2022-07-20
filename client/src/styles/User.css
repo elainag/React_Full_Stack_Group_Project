@@ -1,0 +1,53 @@
+.user-div {
+    display: flex;
+    justify-content: center;
+    padding: 1.5em;
+    margin: 1em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-form {
+    display: grid;
+    margin: .5em;
+    padding: 1rem;
+}
+
+.login-label {
+    margin: .5em 0;
+    font-weight: bold;
+}
+
+.login-email-input {
+    height: 2em;
+    margin: .5em;
+    font-size: 1em;
+}
+
+.log-button {
+    border: none;
+    background-color: var(--color5);
+    padding: .8em;
+    margin-top: 1em;
+}
+
+.register-form {
+    border: solid .5px black;
+    padding: .5em;
+}
+
+.group {
+    display: flex;
+    align-items: center;
+    margin-bottom: .7em;
+}
+
+.form-label {
+    display: block;
+    width: 13rem;
+}
+
+.input {
+    height: 2em;
+    width: 18em;
+    border: solid .5px black;
+}

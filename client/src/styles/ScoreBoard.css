@@ -1,0 +1,30 @@
+.score-board {
+    display: grid;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 1em;
+    font-size: 1.1em;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: var(--color7);
+    color: #ffffff;
+    text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 1em;
+}
+
+.styled-table tbody tr {
+    background-color: #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
