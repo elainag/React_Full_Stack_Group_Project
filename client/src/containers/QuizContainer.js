@@ -14,7 +14,6 @@ const QuizContainer = () => {
     const [answer, setAnswer] = useState(""); // the correct answer
     const [chosen, setChosen] = useState(""); // the radio button chosen by user
     const [playButton, setPlayButton] = useState("PLAY") // this button generates the quiz
-
     const [session, setSession] = useState({ userLoggedIn: false, userDenied: false })
     const [users, setUsers] = useState([]); // gets all the scores, users from our database
     const [user, setUser] = useState({});
