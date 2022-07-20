@@ -43,20 +43,33 @@ const languagesFormat = function (data){
 }
 // Back up in case infobox-parser fails
 const deepLanguageParse = function (stringifiedDataBody){
-    const languages = []
+    const languagesData = []
     if (stringifiedDataBody.includes('official_language')){
         let body = stringifiedDataBody.split('official_language').pop().split('          = ')[0]
         let regex = /\[([^\][]*)]/g;
         while (m = regex.exec(body)) {
-        languages.push(m[1]);
+        languagesData.push(m[1]);
         }
     }else if(stringifiedDataBody.includes('languages              = ')){
         let body = stringifiedDataBody.split('languages              = ').pop().split('          = ')[0]
         let regex = /\[([^\][]*)]/g;
         while (m = regex.exec(body)) {
-        languages.push(m[1]);
+        languagesData.push(m[1]);
         }
     }
+    const filteredLanguageData = languagesData.map((language)=>{
+        return language.split('|')[0]
+    })
+    const languages = filteredLanguageData.filter((result)=>{
+        return result.includes('language') ||
+        result.includes('Standard')
+    }).filter((result)=>{
+        return !result.includes('Official') ||
+        !result.includes('Regional') ||
+        !result.includes('National')
+    })
+
+
     // only return strings over two words if the second word is language
     return languages
 }
