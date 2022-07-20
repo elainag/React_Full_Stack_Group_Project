@@ -1,6 +1,10 @@
 import React from "react";
 
 const ScoreBoard = ({ users }) => {
+    if (!users) {
+        return
+    }
+
 
     users.sort((a, b) => (a.score < b.score) ? 1 : -1);
 

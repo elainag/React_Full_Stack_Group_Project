@@ -2,22 +2,45 @@ import React from "react";
 import CountryData from "./CountryData";
 
 const SearchCountry = ({ countries, search }) => {
-  const countryInfo = countries.filter((country, key) => {
-    if (search === "") {
-      return <CountryData key={key} value={country.country.id} country={country} />
+  const countryInfo = countries.map(countries)
 
-    } else if (country.name.toLowerCase().includes(search.toLowerCase())) {
-      return search;
-    }
-  }).map((country, key) => {
-    return <CountryData key={key} value={country.country.id} country={country} />
-  })
+  console.log(countryInfo)
+
+  // if (search === ("") 
+
+
+
+
+
+
+
+  //     if (search === "") {
+  //       return <CountryData key={key} value={country.country.id} country={country} />
+
+  //     } else if (country.name.toLowerCase().includes(search.toLowerCase())) {
+  //       return search;
+  //     }
+  // }).map((country, key) => {
+  //   return <CountryData key={key} value={country.country.id} country={country} />
+  // })
 
   return (
     <div>
-      {countryInfo}
+      {/* {countryInfo} */}
     </div>
   )
 }
 
 export default SearchCountry;
+
+
+// const countryInfo = countries.filter((country, key) => {
+//   if (search === "") {
+//     return <CountryData key={key} value={country.country.id} country={country} />
+
+//   } else if (country.name.toLowerCase().includes(search.toLowerCase())) {
+//     return search;
+//   }
+// }).map((country, key) => {
+//   return <CountryData key={key} value={country.country.id} country={country} />
+// })
