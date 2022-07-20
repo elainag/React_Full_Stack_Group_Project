@@ -1,6 +1,15 @@
 .GeoMap {
 width: 1000px;
 }
+
+.geography-div {
+  width: 100%;
+  background-color: #e0fbfc;
+  margin: 20px;
+  min-width: 1000px;
+  max-width: 1000px;
+}
+
 .geography {
   stroke: rgb(60, 60, 60);
   stroke-width: 1px;

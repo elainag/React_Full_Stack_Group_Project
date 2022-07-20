@@ -212,11 +212,13 @@ router.get('/:country/summary', (req, res) => {
   fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${country}`)
   .then(res => res.json())
       .then((data) => {
-      if (data.query.redirects){
-          return data.query.redirects[0].to
-      }else{
-          return input
-      }
+        const keys = Object.keys(data.query.pages)
+        if (data.query.pages[keys[0]]){
+          const summary = data.query.pages[keys[0]].extract
+          res.json({summary})
+        }else{
+          res.json(null)
+        }
   })
       .catch((err) => {
       console.error(err);

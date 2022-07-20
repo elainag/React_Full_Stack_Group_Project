@@ -1,0 +1,17 @@
+.country-container{
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+
+    position:absolute;
+    top: 123px;
+    background-color: 0.6 blue;
+    /* opacity:0.6; */
+
+    width: 100%;
+    background-color: #ffe7e7;
+    margin: 40px;
+    /* min-width: 400px; */
+    max-width: 400px;
+align-items: center;
+    max-height: 400px;
+  }
