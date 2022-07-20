@@ -32,7 +32,7 @@ function HomeContainer() {
 
   return (
     <>
-      <h1>HomeContainer</h1>
+      <h1>Welcome to Our World</h1>
       <SearchContainer />
       {/* <User
         users={users}
