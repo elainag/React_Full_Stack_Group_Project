@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
 import Quiz from "../components/Quiz";
 import ScoreBoard from "../components/ScoreBoard";
-
 import User from '../components/User'
 import "../styles/Quiz.css"
+import "../styles/User.css"
 
 const QuizContainer = () => {
 
@@ -15,16 +15,11 @@ const QuizContainer = () => {
     const [answer, setAnswer] = useState(""); // the correct answer
     const [chosen, setChosen] = useState(""); // the radio button chosen by user
     const [playButton, setPlayButton] = useState("PLAY") // this button generates the quiz
-
     const [session, setSession] = useState({ userLoggedIn: false, userDenied: false })
     const [users, setUsers] = useState([]); // gets all the scores, users from our database
     const [user, setUser] = useState({});
     const [score, setScore] = useState(0); // user score
-    const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
-
-
-
-
+    const [quizText, setQuizText] = useState("Capital City Game") // a descriptive text top of the quiz component
     const [gameStatus, setGameStatus] = useState(0); // this defines the items display on the quiz component
 
     useEffect(() => { getCountries() }, [])
@@ -34,8 +29,6 @@ const QuizContainer = () => {
         UserService.getUsers()
             .then(users => setUsers(users));
     }, []);
-
-
 
     // gets all the country objects from API
     function getCountries() {
@@ -58,15 +51,22 @@ const QuizContainer = () => {
 
     // generates the random quiz
     function getQuiz() {
-        setGameStatus(1);
-        const randomSession = {userLoggedIn: true, userDenied: false, gameMode: "random"};
-        setSession(randomSession);
-        generateQuestion();
-        generateOptions();
+        if (user) {
+            return
+        } else {
+            setGameStatus(1);
+            const randomSession = {userLoggedIn: true, userDenied: false, gameMode: "random"};
+            setSession(randomSession);
+            generateQuestion();
+            generateOptions();
+        }
     }
 
     // generates quiz from user QA history
     function getHistoryQuiz() {
+        if (user) {
+            return
+        } else {
         setGameStatus(1);
         const historySession = {userLoggedIn: true, userDenied: false, gameMode: "history"};
         setSession(historySession);
@@ -74,6 +74,7 @@ const QuizContainer = () => {
         setQuestion(user.QA_history[index].question);
         setAnswer(user.QA_history[index].answer)
         setOptions(user.QA_history[index].options)
+        }
     }
 
     // generates the question, changes texts on the play button
@@ -92,7 +93,6 @@ const QuizContainer = () => {
         const option3 = countries[getRandomIndex(0, countries.length - 1)].capital[0];
         const index = getRandomIndex(0, 3);
 
-
         let generatedOptions = [ option1, option2, option3];
 
         generatedOptions.splice(index, 0, country.capital[0]);
@@ -108,38 +108,43 @@ const QuizContainer = () => {
     // if gameMode is history deletes the QA from user history in case of win
     function submitChosen() {
         let points = 0;
-        if (answer !== "") {
-            if (answer === chosen) {
-                let winner = user;
-                winner.score += 10;
-                if (session.gameMode === "history") {
-                    const index = winner.QA_history.findIndex(qa => qa.answer === answer);
-                    winner.QA_history.splice(index, 1)
+        if (user) {
+            setQuizText("You should login to play")
+            return
+        } else {
+            if (answer !== "") {
+                if (answer === chosen) {
+                    let winner = user;
+                    winner.score += 10;
+                    if (session.gameMode === "history") {
+                        const index = winner.QA_history.findIndex(qa => qa.answer === answer);
+                        winner.QA_history.splice(index, 1)
+                    }
+                    setUser(winner);
+                    setScore(winner.score);
+                    UserService.updateUsers(user);
+                    setQuizText("Correct Answer!");
+                    setPlayButton("Play --Again");
+                } else {
+                    let loser = user;
+                    let QA = {
+                        category: "capitals",
+                        question: question,
+                        answer: answer
+                    }
+    
+                    const userAnswers = user.QA_history.map(item => item.answer)
+    
+                    if (userAnswers.includes(answer)) { } else {
+                        loser.QA_history.push(QA);
+                        setUser(loser);
+                    }
+                    setQuizText("Sorry wrong answer.")
+                    setPlayButton("Try Again");
                 }
-                setUser(winner);
-                setScore(winner.score);
-                UserService.updateUsers(user);
-                setQuizText("Correct Answer!");
-                setPlayButton("Play Again");
-            } else {
-                let loser = user;
-                let QA = {
-                    category: "capitals",
-                    question: question,
-                    answer: answer
-                }
-
-                const userAnswers = user.QA_history.map(item => item.answer)
-
-                if (userAnswers.includes(answer)) { } else {
-                    loser.QA_history.push(QA);
-                    setUser(loser);
-                }
-                setQuizText("Sorry wrong answer.")
-                setPlayButton("Try Again");
+                setGameStatus(0);
+                clearQuiz();
             }
-            setGameStatus(0);
-            clearQuiz();
         }
     }
 
@@ -156,7 +161,6 @@ const QuizContainer = () => {
         setUser(selectedUser);
         setScore(selectedUser.score);
     }
-
 
     return (
         <div className="quiz-box">
@@ -180,11 +184,7 @@ const QuizContainer = () => {
                 setChosen={setChosen}
                 getHistoryQuiz={getHistoryQuiz}
             />
-
-
             <ScoreBoard users={users}/>
-            {/* <UserQAHistory /> */}
-
         </div>
     )
 }

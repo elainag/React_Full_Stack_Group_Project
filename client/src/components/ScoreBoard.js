@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/ScoreBoard.css"
 
 const ScoreBoard = ({ users }) => {
     if (!users) {
@@ -19,7 +20,7 @@ const ScoreBoard = ({ users }) => {
     })
 
     return (
-        <article>
+        <article className="score-board">
             <table className="styled-table">
                 <thead>
                     <tr>

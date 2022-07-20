@@ -75,7 +75,7 @@ function GeoMapContainer() {
                             outline: "none"
                         },
                         hover: {
-                            fill: "#e07a5f",
+                            fill: "#7209b7",
                             outline: "none"
                         },
                         activated: {

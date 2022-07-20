@@ -1,6 +1,5 @@
 import React from "react";
-import UserLoginForm from "./UserLoginForm";
-import { Link } from "react-router-dom";
+import "../styles/User.css"
 
 const LoginButton = ({ setSession, setUser, setQuizText}) => {
 
@@ -10,7 +9,7 @@ const LoginButton = ({ setSession, setUser, setQuizText}) => {
         setQuizText("Welcome Back")
     }
     
-    return <button onClick={handleClick}>Logout</button>
+    return <button className="log-button" onClick={handleClick}>Logout</button>
 }
 
 export default LoginButton;
