@@ -1,0 +1,35 @@
+.quiz-box {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: minmax(400px, 75%);
+    min-width: 400px;
+    background-color: #edede9;
+    margin: 20px;
+    padding: 20px;
+}
+
+.play-button, .quiz-input {
+    background-color: #d5bdaf;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: white;
+    margin: 5px;
+}
+
+.radio-div {
+    display: grid;
+    justify-items: flex-start;
+    margin: 20px 10px;
+}
+.radio-span {
+    margin-bottom: 5px;
+}
+
+.radio {
+    border: 1px solid red;
+}
+
+.radio-label {
+    margin-left: 10px;
+}

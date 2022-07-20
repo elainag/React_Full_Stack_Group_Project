@@ -8,8 +8,8 @@ const PopulateCountries = () => {
 
     const getCountries = async () => {
         const key = null;
-        const cName = ' ';
-        const cHref = ' ';
+        const cName = "";
+        const cHref = "";
         const countryRes = await fetch("https://api.teleport.org/api/countries/")
         const countryData = await countryRes.json()
         setCountries(countryData['_links']['country:items'])
@@ -33,4 +33,4 @@ const PopulateCountries = () => {
 
 }
 
-export default PopulateCountries
+export default PopulateCountries;

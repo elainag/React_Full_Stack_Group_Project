@@ -1,0 +1,28 @@
+.geomap {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(150px, 75%);
+  justify-items: center;
+}
+
+.geography-div {
+  width: 100%;
+  background-color: #e0fbfc;
+  margin: 20px;
+  min-width: 300px;
+  max-width: 800px;
+}
+
+.geography {
+  stroke: rgb(122, 122, 122);
+  stroke-width: 1px;
+}
+
+.geography:nth-child(1n) { fill: #2f3e46; }
+.geography:nth-child(2n) { fill: #a98467; }
+.geography:nth-child(3n) { fill: #52796f; }
+.geography:nth-child(4n) { fill: #6c584c; }
+.geography:nth-child(5n) { fill: #84a98c; }
+.geography:nth-child(5n) { fill: #354f52; }
