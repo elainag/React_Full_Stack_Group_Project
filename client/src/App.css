@@ -22,14 +22,8 @@
 
 .navbar {
   position: fixed;
-  top: 10px;
-  left: 10px;
-}
-
-.navbar {
-  position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 15px;
+  left: 15px;
 }
 
 .App-logo {
