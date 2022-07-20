@@ -1,21 +1,28 @@
-/* .user-login {
-    display: grid;
-    justify-content: center;
-    border: 2px solid green;
-}
-
 .login-form {
-    display: grid;
-    justify-content: center;
-    background-color: lightgreen;
+    display: flex;
+    align-items: center;
+    margin: .5em;
+    padding: 1rem;
 }
 
-.login-form>div>label>input {
-    border: 1px solid blue;
+.login-label {
+    margin: .5em;
+    font-weight: bold;
+    color: var(--color10);
 }
 
-.register-form {
-    display: grid;
-    justify-content: center;
-    background-color: yellow;
-} */
+.login-email-input {
+    height: 2em;
+    margin: .5em;
+    font-size: 1em;
+    color: var(--color10);
+    border: 1px solid var(--color5);
+}
+
+.login-button {
+    border: none;
+    background-color: var(--color5);
+    color: var(--color1);
+    padding: .8em;
+    margin: .2em;
+}
