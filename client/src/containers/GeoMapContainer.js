@@ -6,20 +6,35 @@ import Country from "../components/Country";
 import {wikifyCountry, findAnthem, findLanguages, findLanguageSample} from "../services/WikipediaService";
 
 function GeoMapContainer() {
+    const [isLoaded, setIsLoaded] = useState(false)
     const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
     const [content, setContent] = useState("")
     const [selectedCountry, setSelectedCountry] = useState("")
 
-    const [wikifiedCountry, setWikifiedCountry] = useState(null)
-    const [anthem, setAnthem] = useState(null);
+    const [wikifiedCountry, setWikifiedCountry] = useState("")
+    const [anthem, setAnthem] = useState("");
     const [languages, setLanguages] = useState([])
     const [langueSample, setLanguageSample] = useState(null)
 
     useEffect(()=>{
+        if(!isLoaded){
+            return
+        }
         wikifyCountry(selectedCountry).then((wikified)=>{
-        setWikifiedCountry(wikified);
+        setWikifiedCountry(wikified)
         })
-      }, []);
+        setAnthem('')
+        
+    }, [selectedCountry]);
+
+    useEffect(()=>{
+        if(!isLoaded){
+            return
+        }
+        findAnthem(wikifiedCountry).then((anthem)=>{
+        setAnthem(anthem);
+        })
+    }, [wikifiedCountry]);
 
     return (
         <div className="GeoMap">
@@ -38,6 +53,7 @@ function GeoMapContainer() {
                         onMouseEnter={() => {
                             const NAME  = geo.properties.name;
                             setContent(`${NAME}`);
+                            setIsLoaded(true);
                         }}
                         onClick={() => {
                             const NAME  = geo.properties.name;
@@ -65,7 +81,7 @@ function GeoMapContainer() {
                 </ZoomableGroup>
             </ComposableMap>
             </div>
-            <Country country={selectedCountry}/>
+            <Country country={selectedCountry} anthem={anthem}/>
         </div>
     )
 }
