@@ -59,7 +59,7 @@ const QuizContainer = () => {
     // generates the random quiz
     function getQuiz() {
         setGameStatus(1);
-        const randomSession = {userLoggedIn: true, userDenied: false, gameMode: "random"};
+        const randomSession = { userLoggedIn: true, userDenied: false, gameMode: "random" };
         setSession(randomSession);
         generateQuestion();
         generateOptions();
@@ -68,7 +68,7 @@ const QuizContainer = () => {
     // generates quiz from user QA history
     function getHistoryQuiz() {
         setGameStatus(1);
-        const historySession = {userLoggedIn: true, userDenied: false, gameMode: "history"};
+        const historySession = { userLoggedIn: true, userDenied: false, gameMode: "history" };
         setSession(historySession);
         const index = getRandomIndex(0, user.QA_history.length - 1);
         setQuestion(user.QA_history[index].question);
@@ -93,7 +93,7 @@ const QuizContainer = () => {
         const index = getRandomIndex(0, 3);
 
 
-        let generatedOptions = [ option1, option2, option3];
+        let generatedOptions = [option1, option2, option3];
 
         generatedOptions.splice(index, 0, country.capital[0]);
         setOptions(generatedOptions);
@@ -182,8 +182,8 @@ const QuizContainer = () => {
             />
 
 
-            <ScoreBoard users={users}/>
-            <UserQAHistory />
+            <ScoreBoard users={users} />
+            {/* <UserQAHistory /> */}
 
         </div>
     )
