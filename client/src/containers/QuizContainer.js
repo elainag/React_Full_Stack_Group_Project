@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
 import Quiz from "../components/Quiz";
 import ScoreBoard from "../components/ScoreBoard";
-
 import User from '../components/User'
 import "../styles/Quiz.css"
 
@@ -21,10 +20,6 @@ const QuizContainer = () => {
     const [user, setUser] = useState({});
     const [score, setScore] = useState(0); // user score
     const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
-
-
-
-
     const [gameStatus, setGameStatus] = useState(0); // this defines the items display on the quiz component
 
     useEffect(() => { getCountries() }, [])
@@ -34,8 +29,6 @@ const QuizContainer = () => {
         UserService.getUsers()
             .then(users => setUsers(users));
     }, []);
-
-
 
     // gets all the country objects from API
     function getCountries() {
@@ -91,7 +84,6 @@ const QuizContainer = () => {
         const option2 = countries[getRandomIndex(0, countries.length - 1)].capital[0];
         const option3 = countries[getRandomIndex(0, countries.length - 1)].capital[0];
         const index = getRandomIndex(0, 3);
-
 
         let generatedOptions = [ option1, option2, option3];
 
@@ -157,7 +149,6 @@ const QuizContainer = () => {
         setScore(selectedUser.score);
     }
 
-
     return (
         <div className="quiz-box">
             <User
@@ -180,11 +171,7 @@ const QuizContainer = () => {
                 setChosen={setChosen}
                 getHistoryQuiz={getHistoryQuiz}
             />
-
-
             <ScoreBoard users={users}/>
-            <UserQAHistory />
-
         </div>
     )
 }
