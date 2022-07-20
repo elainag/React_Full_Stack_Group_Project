@@ -1,15 +1,17 @@
+
+  /* color: var(--color3); */
+
 .quiz-box {
     display: grid;
     justify-items: center;
     grid-template-columns: minmax(400px, 75%);
     min-width: 400px;
-    background-color: #edede9;
     margin: 20px;
     padding: 20px;
 }
 
 .play-button, .quiz-input {
-    background-color: #d5bdaf;
+    background-color: var(--color3);
     border: none;
     padding: 10px 20px;
     font-weight: bold;

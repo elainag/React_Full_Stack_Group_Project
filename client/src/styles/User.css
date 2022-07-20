@@ -8,15 +8,12 @@
 .login-label {
     margin: .5em;
     font-weight: bold;
-    color: var(--color10);
 }
 
 .login-email-input {
     height: 2em;
     margin: .5em;
     font-size: 1em;
-    color: var(--color10);
-    border: 1px solid var(--color5);
 }
 
 .login-button {
@@ -25,4 +22,10 @@
     color: var(--color1);
     padding: .8em;
     margin: .2em;
+}
+
+.quiz-text {
+    color: var(--color1);
+    padding: .7em;
+    margin: .5em;
 }

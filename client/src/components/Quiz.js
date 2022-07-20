@@ -1,12 +1,13 @@
 import React from "react";
 import QuizOptions from "./QuizOptions";
+import "../styles/User.css"
 
 
 const Quiz = ({ quizText, score, getQuiz, playButton, question, gameStatus, options, submitChosen, setChosen, getHistoryQuiz}) => {
 
     return (
         <>
-            <p>{quizText}</p>
+            <h2 className="quiz-text">{quizText}</h2>
             {/* show the following line only if a user is logged in */}
             {gameStatus === 1 ? <p>Your Score: {score}</p> : null}
             {/* <p>Your Score: {score}</p> */}

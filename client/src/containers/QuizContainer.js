@@ -4,6 +4,7 @@ import Quiz from "../components/Quiz";
 import ScoreBoard from "../components/ScoreBoard";
 import User from '../components/User'
 import "../styles/Quiz.css"
+import "../styles/User.css"
 
 const QuizContainer = () => {
 
