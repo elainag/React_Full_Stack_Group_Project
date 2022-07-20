@@ -7,7 +7,7 @@ import "../styles/User.css";
 const User = ({ setUser, users, setQuizText, onSelectedUser, addUser , session, setSession}) => {
 
     return (
-        <div id="user_div" >
+        <div className="user-div">
             { session.userLoggedIn === false ? 
             <UserLoginForm 
                 id="login_form"

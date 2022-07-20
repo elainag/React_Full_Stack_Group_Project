@@ -19,7 +19,7 @@ const QuizContainer = () => {
     const [users, setUsers] = useState([]); // gets all the scores, users from our database
     const [user, setUser] = useState({});
     const [score, setScore] = useState(0); // user score
-    const [quizText, setQuizText] = useState("Welcome back") // a descriptive text top of the quiz component
+    const [quizText, setQuizText] = useState("Capital City Game") // a descriptive text top of the quiz component
     const [gameStatus, setGameStatus] = useState(0); // this defines the items display on the quiz component
 
     useEffect(() => { getCountries() }, [])

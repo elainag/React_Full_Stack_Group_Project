@@ -1,3 +1,7 @@
+.score-board {
+    display: grid;
+}
+
 .styled-table {
     border-collapse: collapse;
     margin: 1em;

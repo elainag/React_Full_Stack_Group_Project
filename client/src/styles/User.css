@@ -1,12 +1,19 @@
-.login-form {
+.user-div {
     display: flex;
-    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+    margin: 1em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-form {
+    display: grid;
     margin: .5em;
     padding: 1rem;
 }
 
 .login-label {
-    margin: .5em;
+    margin: .5em 0;
     font-weight: bold;
 }
 
@@ -20,7 +27,7 @@
     border: none;
     background-color: var(--color5);
     padding: .8em;
-    margin: .2em;
+    margin-top: 1em;
 }
 
 .register-form {

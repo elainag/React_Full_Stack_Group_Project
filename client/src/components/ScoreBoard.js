@@ -20,7 +20,7 @@ const ScoreBoard = ({ users }) => {
     })
 
     return (
-        <article>
+        <article className="score-board">
             <table className="styled-table">
                 <thead>
                     <tr>
