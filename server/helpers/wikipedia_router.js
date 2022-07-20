@@ -14,7 +14,7 @@ const anthemFormat = function (data){
     if (anthem !== notFound){
       return anthem
     }else{
-      return false
+      return null
     }
 }
 
@@ -137,31 +137,37 @@ const country = req.params.country
 fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=${country}&rvsection=0&rvparse`)
 .then(res => res.json())
 .then((data) => {
-    anthem = anthemFormat(data)
+    const anthem = anthemFormat(data)
     // console.log('anthem:', anthem)
-    checkRedirects(anthem).then((wikipediafied)=>{
-    return fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${wikipediafied}&format=json`)
-    .then(res => res.json())
-        .then((data) => {
-        const mediaWithAudio = data.parse.images.filter((file)=>{
-            return file.includes('.ogg')
-        })
-            fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=File:${mediaWithAudio[0]}&prop=imageinfo&iilimit=50&iiend=2007-12-31T23%3A59%3A59Z&iiprop=timestamp%7Cuser%7Curl&format=json`)
-            .then(res => res.json())
-            .then((data) => {
-                const keys = Object.keys(data.query.pages)
-                console.log(data.query.pages[keys[0]].imageinfo[0].url)
-                const anthemUrl = data.query.pages[keys[0]].imageinfo[0].url
-                res.json(anthemUrl)
-            })    
-    .catch((err) => {
-    console.error(err);
-    res.status(500);
-    res.json({ status: 500, error: err });
-    });
+    if (anthem !== null) {
+      checkRedirects(anthem).then((wikipediafied)=>{
+      return fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${wikipediafied}&format=json`)
+      .then(res => res.json())
+          .then((data) => {
+          const mediaWithAudio = data.parse.images.filter((file)=>{
+              return file.includes('.ogg')
+          })
+              fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=File:${mediaWithAudio[0]}&prop=imageinfo&iilimit=50&iiend=2007-12-31T23%3A59%3A59Z&iiprop=timestamp%7Cuser%7Curl&format=json`)
+              .then(res => res.json())
+              .then((data) => {
+                  const keys = Object.keys(data.query.pages)
+                  // console.log(data.query.pages[keys[0]].imageinfo[0].url)
+                  if (data.query.pages[keys[0]].imageinfo){
+                    const anthemUrl = data.query.pages[keys[0]].imageinfo[0].url
+                    res.json(anthemUrl)
+                  }else{
+                    res.json(null)
+                  }
+              })    
+          })
+      })
+    }
 })
-})
-})
+.catch((err) => {
+  console.error(err);
+  res.status(500);
+  res.json({ status: 500, error: err });
+  });
 })
 
 // Language
@@ -201,6 +207,23 @@ fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${wikipe
 })
 })
 
-
+router.get('/:country/summary', (req, res) => {
+  const country = req.params.country
+  fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${country}`)
+  .then(res => res.json())
+      .then((data) => {
+      if (data.query.redirects){
+          return data.query.redirects[0].to
+      }else{
+          return input
+      }
+  })
+      .catch((err) => {
+      console.error(err);
+      res.status(500);
+      res.json({ status: 500, error: err });
+      });
+  })
+  
 
 module.exports = router;
