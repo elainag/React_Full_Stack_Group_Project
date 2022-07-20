@@ -18,6 +18,7 @@ const createRouter = function(collection) {
   });
 
   router.post('/', (req, res) => {
+    console.log(req);
     const newData = req.body;
     collection
     .insertOne(newData)

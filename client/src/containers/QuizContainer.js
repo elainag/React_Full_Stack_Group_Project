@@ -30,6 +30,10 @@ const QuizContainer = () => {
             .then(users => setUsers(users));
     }, []);
 
+    function addNewUser(user) {
+        return
+    }
+
     // gets all the country objects from API
     function getCountries() {
         fetch("https://restcountries.com/v3.1/all")
@@ -51,29 +55,27 @@ const QuizContainer = () => {
 
     // generates the random quiz
     function getQuiz() {
-        if (user) {
-            return
-        } else {
-            setGameStatus(1);
-            const randomSession = {userLoggedIn: true, userDenied: false, gameMode: "random"};
-            setSession(randomSession);
-            generateQuestion();
-            generateOptions();
-        }
+        setGameStatus(1);
+        const randomSession = {userLoggedIn: true, userDenied: false, gameMode: "random"};
+        setSession(randomSession);
+        generateQuestion();
+        generateOptions();
     }
 
     // generates quiz from user QA history
     function getHistoryQuiz() {
-        if (user) {
+        if (user.QA_history.length > 1) {
+            setGameStatus(0);
+            setQuizText("Sorry your history is empty");
             return
-        } else {
-        setGameStatus(1);
-        const historySession = {userLoggedIn: true, userDenied: false, gameMode: "history"};
-        setSession(historySession);
-        const index = getRandomIndex(0, user.QA_history.length - 1);
-        setQuestion(user.QA_history[index].question);
-        setAnswer(user.QA_history[index].answer)
-        setOptions(user.QA_history[index].options)
+        } else {    
+            setGameStatus(1);
+            const historySession = {userLoggedIn: true, userDenied: false, gameMode: "history"};
+            setSession(historySession);    
+            const index = getRandomIndex(0, user.QA_history.length - 1);
+            setQuestion(user.QA_history[index].question);
+            setAnswer(user.QA_history[index].answer)
+            setOptions(user.QA_history[index].options)
         }
     }
 
@@ -108,43 +110,38 @@ const QuizContainer = () => {
     // if gameMode is history deletes the QA from user history in case of win
     function submitChosen() {
         let points = 0;
-        if (user) {
-            setQuizText("You should login to play")
-            return
-        } else {
-            if (answer !== "") {
-                if (answer === chosen) {
-                    let winner = user;
-                    winner.score += 10;
-                    if (session.gameMode === "history") {
-                        const index = winner.QA_history.findIndex(qa => qa.answer === answer);
-                        winner.QA_history.splice(index, 1)
-                    }
-                    setUser(winner);
-                    setScore(winner.score);
-                    UserService.updateUsers(user);
-                    setQuizText("Correct Answer!");
-                    setPlayButton("Play --Again");
-                } else {
-                    let loser = user;
-                    let QA = {
-                        category: "capitals",
-                        question: question,
-                        answer: answer
-                    }
-    
-                    const userAnswers = user.QA_history.map(item => item.answer)
-    
-                    if (userAnswers.includes(answer)) { } else {
-                        loser.QA_history.push(QA);
-                        setUser(loser);
-                    }
-                    setQuizText("Sorry wrong answer.")
-                    setPlayButton("Try Again");
+        if (answer !== "") {
+            if (answer === chosen) {
+                let winner = user;
+                winner.score += 10;
+                if (session.gameMode === "history") {
+                    const index = winner.QA_history.findIndex(qa => qa.answer === answer);
+                    winner.QA_history.splice(index, 1)
                 }
-                setGameStatus(0);
-                clearQuiz();
+                setUser(winner);
+                setScore(winner.score);
+                UserService.updateUsers(user);
+                setQuizText("Correct Answer!");
+                setPlayButton("Play Again");
+            } else {
+                let loser = user;
+                let QA = {
+                    category: "capitals",
+                    question: question,
+                    answer: answer
+                }
+
+                const userAnswers = user.QA_history.map(item => item.answer)
+
+                if (userAnswers.includes(answer)) { } else {
+                    loser.QA_history.push(QA);
+                    setUser(loser);
+                }
+                setQuizText("Sorry wrong answer.")
+                setPlayButton("Try Again");
             }
+            setGameStatus(0);
+            clearQuiz();
         }
     }
 
@@ -170,7 +167,8 @@ const QuizContainer = () => {
                 setQuizText={setQuizText}
                 onSelectedUser={onSelectedUser}
                 session={session}
-                setSession={setSession} />
+                setSession={setSession}
+                addNewUser={addNewUser} />
 
             <Quiz
                 quizText={quizText}

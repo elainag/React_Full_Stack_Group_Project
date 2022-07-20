@@ -4,7 +4,7 @@ import UserRegisterForm from "./UserRegisterForm";
 import LoginButton from "./LoginButton";
 import "../styles/User.css";
 
-const User = ({ setUser, users, setQuizText, onSelectedUser, addUser , session, setSession}) => {
+const User = ({ setUser, users, setQuizText, onSelectedUser, addUser , session, setSession, addNewUser}) => {
 
     return (
         <div className="user-div">
@@ -21,7 +21,7 @@ const User = ({ setUser, users, setQuizText, onSelectedUser, addUser , session, 
                 setQuizText={setQuizText}/> }
 
             { session.userDenied === true ?
-            <UserRegisterForm addUser={addUser}/> 
+            <UserRegisterForm addUser={addNewUser}/> 
             : null }
         </div>
     )
