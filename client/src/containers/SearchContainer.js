@@ -5,7 +5,7 @@ function SearchContainer() {
   const [countries, setCountries] = useState();
   const [search, setSearch] = useState("")
 
-  useEffect(() => { searchCountries() })
+  useEffect(() => { searchCountries() },[search]) //// discuss with sezen
 
   function searchCountries() {
     fetch("https://restcountries.com/v3.1/all")

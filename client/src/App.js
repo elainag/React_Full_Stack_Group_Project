@@ -10,6 +10,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './components/Menu';
 
+import PopulateCountries from './services/PopulateCountries';
+import PopulateCities from './services/PopulateCities';
+
 function App() {
   return (
     <div className="App">
@@ -26,6 +29,8 @@ function App() {
       <HomeContainer className="home-container"></HomeContainer>
       {/* <QuizContainer></QuizContainer>
       <GeoMapContainer></GeoMapContainer> */}
+        {/* <PopulateCountries /> */}
+      <PopulateCities />
       <Footer />
     </div>
   );
