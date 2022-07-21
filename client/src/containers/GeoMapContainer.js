@@ -3,7 +3,7 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simp
 import ReactTooltip from 'react-tooltip';
 import "../styles/GeoMapContainer.css"
 import Country from "../components/Country";
-import {wikifyCountry, findAnthem, findCountrySummary, findLanguages, findLanguageSample} from "../services/WikipediaService";
+import {wikifyCountry, findAnthem, findCountrySummary} from "../services/WikipediaService";
 
 
 
@@ -16,8 +16,6 @@ function GeoMapContainer() {
     const [wikifiedCountry, setWikifiedCountry] = useState("")
     const [anthem, setAnthem] = useState("");
     const [summary, setSummary] = useState("")
-    const [languages, setLanguages] = useState([])
-    const [langueSample, setLanguageSample] = useState(null)
 
     const [showContainer, setShowContainer] = useState(false)
     useEffect(()=>{

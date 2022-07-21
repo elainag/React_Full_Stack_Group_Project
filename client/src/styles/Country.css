@@ -1,17 +1,76 @@
 .country-container{
     scroll-behavior: smooth;
     overflow-y: scroll;
-
     position:absolute;
     top: 123px;
-    background-color: 0.6 blue;
-    /* opacity:0.6; */
-
+    /* background: rgb(204, 204, 204); */
+    /* background: rgba(253, 253, 253, 0.95); */
+    background-color: white; 
     width: 100%;
-    background-color: #ffe7e7;
-    margin: 40px;
-    /* min-width: 400px; */
+    margin-left: 200px;
     max-width: 400px;
-align-items: center;
     max-height: 400px;
+
+    /* display: flex; */
+    /* justify-content: center; */
+    /* margin: 1em; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .country-container:after {
+    content: "";
+    display: block;
+    height: 50px;
+    width: 100%;
+  }
+
+  .country-container h1{
+    padding-top: 1em;
+    text-align: center;
+    font-size: x-large;
+    margin:10px;
+  }
+  .country-container p{
+    margin:20px;
+    text-align: center;
+  }
+
+  .close-button{
+    float:right;
+    padding: 2px;
+    min-height: 5px;
+    min-height: 5px;
+    font-size: x-large;  
+  }
+  .close-button:hover{
+    color:rgb(235, 232, 232);
+  }
+
+  .anthem-button{
+    color:white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--color6);
+    border: none;
+    height: 3em;
+    padding: 1em;
+    margin: 1em;
+    font-size: .8em;
+  } 
+
+  .pause-button{
+    color:white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--color4);
+    border: none;
+    height: 3em;
+    padding: 1em;
+    margin: 1em;
+    font-size: .8em;
+  } 
+
+  .country-container div {
+    background-color: var(--color7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }

@@ -9,17 +9,20 @@ const Country = ({country, anthem, summary, setShowContainer}) => {
         html5: true
     })
     
+    const playing = false;
 
 return(
 <div className="country-container">
-    <button 
+    <button className="close-button" 
         onClick={() => {
         sound.pause()
         setShowContainer(false)
-        }}>close</button>
-    <h1>hi {country}</h1>
-    <button onClick={()=> sound.play()}>{anthem ? 'Play' : 'not'}</button>
-    <button onClick={()=> sound.pause()}>Pause anthem</button>
+        }}>x</button>
+    <h1>{country}</h1>
+    <div>
+    {anthem ? <button className="anthem-button" onClick={()=> sound.play()}>PLAY ANTHEM</button> : null}
+    {anthem ? <button className="pause-button"onClick={()=> sound.pause()}>PAUSE ANTHEM</button>: null}
+    </div>
     <p>{summary.summary}</p>
 </div>
 )
