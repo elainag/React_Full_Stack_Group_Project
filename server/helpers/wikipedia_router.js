@@ -138,7 +138,6 @@ fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=con
 .then(res => res.json())
 .then((data) => {
     const anthem = anthemFormat(data)
-    // console.log('anthem:', anthem)
     if (anthem !== null) {
       checkRedirects(anthem).then((wikipediafied)=>{
       return fetch(`https://en.wikipedia.org/w/api.php?action=parse&prop=images&page=${wikipediafied}&format=json`)
@@ -151,7 +150,6 @@ fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=con
               .then(res => res.json())
               .then((data) => {
                   const keys = Object.keys(data.query.pages)
-                  // console.log(data.query.pages[keys[0]].imageinfo[0].url)
                   if (data.query.pages[keys[0]].imageinfo){
                     const anthemUrl = data.query.pages[keys[0]].imageinfo[0].url
                     res.json(anthemUrl)
