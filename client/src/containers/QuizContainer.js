@@ -119,8 +119,8 @@ const QuizContainer = () => {
                     winner.QA_history.splice(index, 1)
                 }
                 setUser(winner);
-                setScore(winner.score);
                 UserService.updateUsers(user);
+                setScore(user.score);
                 setQuizText("Correct Answer!");
                 setPlayButton("Play Again");
             } else {
@@ -131,11 +131,12 @@ const QuizContainer = () => {
                     answer: answer
                 }
 
-                const userAnswers = user.QA_history.map(item => item.answer)
+                const userAnswers = loser.QA_history.map(item => item.answer)
 
                 if (userAnswers.includes(answer)) { } else {
                     loser.QA_history.push(QA);
                     setUser(loser);
+                    UserService.updateUsers(user);
                 }
                 setQuizText("Sorry wrong answer.")
                 setPlayButton("Try Again");

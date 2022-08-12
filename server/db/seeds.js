@@ -1,7 +1,6 @@
 use react_app;
 db.dropDatabase();
 
-
 db.countries.insertMany([
   {
     name: "Elaina",
