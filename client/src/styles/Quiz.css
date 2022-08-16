@@ -1,0 +1,63 @@
+.quiz-text {
+    text-align: center;
+    padding: .7em;
+    margin: .5em;
+}
+
+.score-text {
+    text-align: center;
+    padding: 1em;
+}
+
+.question, .options {
+    margin: 1em;
+}
+
+.play-button, .play-history-button {
+    border: none;
+    height: 3em;
+    padding: 1em;
+    margin: 1em;
+    font-size: .8em;
+    font-family: 'Nunito', sans-serif;
+}
+
+.play-button {
+    background-color: var(--color6);
+}
+
+.play-history-button {
+    background-color: var(--color3) ;
+}
+
+.quiz-div, .play-div, .score-text {
+    padding: 1.5em;
+    margin: 1em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.play-div {
+    display: flex;
+    justify-content: center;
+}
+
+.radio-div {
+    display: grid;
+    margin: 1em;
+}
+
+.radio-span {
+    margin-bottom: .5em;
+}
+
+.radio {
+    margin-right: 2em;
+}
+
+.quiz-input {
+    border: none;
+    padding: .7em;
+    width: 7em;
+    margin-top: .5em;
+    background-color: var(--color5);
+}

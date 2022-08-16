@@ -1,20 +1,42 @@
+:root {
+  --container: #F6F6F6;
+  --color1: #F94144;
+  --color2: #F3722C;
+  --color3: #F8961E;
+  --color4: #F9844A;
+  --color5: #F9C74F;
+  --color6: #90BE6D;
+  --color7: #43AA8B;
+  --color8: #4D908E;
+  --color9: #577590;
+  --color10: #277DA1;
+}
+
 .App {
-  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  display: grid;
+  justify-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar {
+  position: fixed;
+  top: 15px;
+  left: 15px;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
-  background-color: #282c34;
+  background-color: #282C34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,11 +45,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
-  color: #61dafb;
+  color: #61DAFB;
 }
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,6 +56,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-/* still trying to add myself without breaking the code  */
